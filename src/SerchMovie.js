@@ -27,9 +27,9 @@ export default function SearchMovie() {
         <>
             <SearchForm onSubmit={searchMovies}>
                 <label className="label" htmlFor="query">
-                    Movie
+                    keyWord
                 </label>
-                <InputText className="input" id="keyWords" type="text" name="query" placeholder="i.e Jurassic Park" value={query} onChange={(e) => setQuery(e.target.value)}/>
+                <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="i.e Jurassic Park" value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <SubmitBtn className="button" type="submit">
                     Search
                 </SubmitBtn>
