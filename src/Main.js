@@ -10,6 +10,10 @@ function Main() {
                     <SubTitle>React.js App</SubTitle>
                 </MainVisuTitle>
                 <img src={`${process.env.PUBLIC_URL}/asset/main.jpg`} />
+                <MainVisuText>
+                    さまざまなキーワードから映画を検索、<br></br>
+                    ジャンルごとの人気作品も。
+                </MainVisuText>
             </MainVisu>
         </div>
     )
@@ -38,4 +42,12 @@ const SubTitle = styled.p`
     display:block;
     font-family: 'Roboto', sans-serif;
     letter-spacing:0.04em;
+`;
+
+const MainVisuText = styled.p`
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;

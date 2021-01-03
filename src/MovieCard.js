@@ -36,6 +36,7 @@ const CardContainer = styled.div`
     margin: 30px auto 10px;
     border-bottom: 1px solid #999;
     padding-bottom: 30px;
+    color:#fff;
 `;
 
 const CardThumbnail = styled.div`
@@ -72,6 +73,7 @@ const CardTitle = styled.div`
     font-size:22px;
     font-weight: 600;
     text-align:left;
+    margin-bottom:20px;
 `;
 
 

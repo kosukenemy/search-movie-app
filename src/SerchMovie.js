@@ -26,8 +26,9 @@ export default function SearchMovie() {
     return (
         <>
             <SearchForm onSubmit={searchMovies}>
-{/*                 <label className="label" htmlFor="query">
-                </label> */}
+                <label className="label" htmlFor="query">
+                </label>
+                <SearchFormTitle>キーワードから映画を検索</SearchFormTitle>
                 <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="i.e Jurassic Park" value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <SubmitBtn className="button" type="submit">
                     Search
@@ -44,15 +45,23 @@ export default function SearchMovie() {
 
 
 const SearchForm = styled.form`
-    position: absolute;
-    top: 20px;
-    right:30px;
+    margin: 30px auto 100px;
+    width: 621px;
+`;
+
+const SearchFormTitle = styled.p`
+    color:#fff;
+    text-align:center;
+    font-size:14px;
+    letter-spacing:0.06em;
+    margin:0 auto 10px;
+
 `;
 
 const InputText = styled.input`
     font-family: 'Roboto', sans-serif;
-    width:230px;
-    height:30px;
+    width:480px;
+    height:50px;
     padding-left: 10px;
     border: 0.2px solid #999;
 `;
@@ -60,11 +69,11 @@ const SubmitBtn = styled.button`
     font-family: 'Roboto', sans-serif;
     display: inline-block;
     border:none;
-    height: 31px;
-    padding: 3px 14px 3px 14px;
+    height: 52px;
+    padding: 3px 44px 3px 44px;
     text-decoration: none;
     color: #FFF;
-    font-weight:bold;
+    font-weight:800;
     background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
     transition: .4s;
 
