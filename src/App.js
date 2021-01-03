@@ -2,16 +2,14 @@
 import './App.css';
 import styled, {css} from 'styled-components'
 import SearchMovie from './SerchMovie'; 
+import Main from './Main';
+
 
 function App() {
   return (
     <AppContainer>
-    <>
-      <Header>
-        <h1>React Movie Search</h1>
+        <Main />
         <SearchMovie />
-      </Header>
-    </>
     </AppContainer>
   );
 }
@@ -24,6 +22,4 @@ const AppContainer = styled.div`
 
 `;
 
-const Header = styled.header`
-    
-`;
+

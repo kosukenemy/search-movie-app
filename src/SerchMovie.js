@@ -26,41 +26,42 @@ export default function SearchMovie() {
     return (
         <>
             <SearchForm onSubmit={searchMovies}>
-                <label className="label" htmlFor="query">
-                    keyWord
-                </label>
+{/*                 <label className="label" htmlFor="query">
+                </label> */}
                 <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="i.e Jurassic Park" value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <SubmitBtn className="button" type="submit">
                     Search
                 </SubmitBtn>
             </SearchForm>
-            <div className="card-list">
+            <MovieList>
                 {movies.filter(movie => movie.poster_path).map(movie => (
                     <MovieCard movie={movie} key={movie.id}/>
                 ))}
-            </div>
+            </MovieList>
         </>
     )
 }
 
-const SearchForm = styled.form`
-    position:absolute;
-    top:0;
-    right:20px;
 
+const SearchForm = styled.form`
+    position: absolute;
+    top: 20px;
+    right:30px;
 `;
 
 const InputText = styled.input`
     font-family: 'Roboto', sans-serif;
-    width:200px;
+    width:230px;
     height:30px;
+    padding-left: 10px;
     border: 0.2px solid #999;
 `;
 const SubmitBtn = styled.button`
     font-family: 'Roboto', sans-serif;
     display: inline-block;
     border:none;
-    padding: 0.71em 1em;
+    height: 31px;
+    padding: 3px 14px 3px 14px;
     text-decoration: none;
     color: #FFF;
     font-weight:bold;
@@ -70,4 +71,8 @@ const SubmitBtn = styled.button`
     &:hover {
         background-image: linear-gradient(#6795fd 0%, #67ceff 70%);
     }
+`;
+
+const MovieList = styled.div`
+
 `;
