@@ -4,9 +4,12 @@ import MovieCard from './MovieCard.js';
 
 export default function SearchMovie() {
 
+
     //states- input query, movies
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
+    const [page , setPage ] = useState(1);
+    const [ currentMovie , setCurrentMovie ] = useState(null)
 
     const searchMovies = async(e) => {
         e.preventDefault();
@@ -23,13 +26,18 @@ export default function SearchMovie() {
             console.log(err)
         }
     } 
+    const viewMoviePage = (id) => {
+        const filteredMovie = this.useState.movies.filter(movie => movie.id == id);
+        const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] :null
+        this.setState({ currentMovie : filteredMovie });
+    }
     return (
         <>
             <SearchForm onSubmit={searchMovies}>
                 <label className="label" htmlFor="query">
                 </label>
                 <SearchFormTitle>キーワードから映画を検索</SearchFormTitle>
-                <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="i.e Jurassic Park" value={query} onChange={(e) => setQuery(e.target.value)}/>
+                <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="i.e Jurassic Park, 2020,   " value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <SubmitBtn className="button" type="submit">
                     Search
                 </SubmitBtn>

@@ -18,7 +18,7 @@ export default function MovieCard({movie}){
             </CardThumbnail>
 
             <CardContent>
-                <CardTitle>{movie.original_title}</CardTitle>
+                <CardTitle href={movie.id}>{movie.original_title}</CardTitle>
                 <div>
                     <OverReview>{movie.overview}</OverReview>
                     <ReleaseDate>Release: {movie.release_date}</ReleaseDate>
@@ -68,11 +68,14 @@ const CardContent = styled.div`
     margin:30px;
 `;
 
-const CardTitle = styled.div`
+const CardTitle = styled.a`
     font-family: HelveticaNeue;
     font-size:22px;
     font-weight: 600;
     text-align:left;
+    margin-bottom:17px;
+    color:#fff;
+    text-decoration:none;
     margin-bottom:20px;
 `;
 
