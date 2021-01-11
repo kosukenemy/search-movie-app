@@ -8,8 +8,6 @@ export default function SearchMovie() {
     //states- input query, movies
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
-    const [page , setPage ] = useState(1);
-    const [ currentMovie , setCurrentMovie ] = useState(null)
 
     const searchMovies = async(e) => {
         e.preventDefault();
@@ -17,20 +15,21 @@ export default function SearchMovie() {
         console.log(keyWords)
         const query = keyWords;
         const url = `https://api.themoviedb.org/3/search/movie?api_key=0fc8e9e04a9029823b63bf639cf9752d&language=ja&query=${query}&page=1&include_adult=false`;
+        
+        const searchResults = document.getElementById('searchResults');
+        searchResults.innerHTML = '検索キーワード：' + keyWords;
 
+        
         try {
             const res = await fetch(url);
             const data  = await res.json();
             setMovies(data.results);
+            
         } catch(err) {
             console.log(err)
         }
     } 
-    const viewMoviePage = (id) => {
-        const filteredMovie = this.useState.movies.filter(movie => movie.id == id);
-        const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] :null
-        this.setState({ currentMovie : filteredMovie });
-    }
+
     return (
         <>
             <SearchForm onSubmit={searchMovies}>
@@ -41,6 +40,10 @@ export default function SearchMovie() {
                 <SubmitBtn className="button" type="submit">
                     Search
                 </SubmitBtn>
+                {/* 検索キーワード */}
+                <SearchResults>
+                    <p id="searchResults"></p>
+                </SearchResults>
             </SearchForm>
             <MovieList>
                 {movies.filter(movie => movie.poster_path).map(movie => (
@@ -61,6 +64,7 @@ const SearchFormTitle = styled.p`
     color:#fff;
     text-align:center;
     font-size:14px;
+    font-weight: bold;
     letter-spacing:0.06em;
     margin:0 auto 10px;
 
@@ -88,6 +92,16 @@ const SubmitBtn = styled.button`
     &:hover {
         background-image: linear-gradient(#6795fd 0%, #67ceff 70%);
     }
+`;
+
+const SearchResults = styled.div`
+    p {
+        color:#fff;
+        margin-top: 10px;
+        font-size: 14px;
+        letter-spacing: 0.06em;
+    }
+
 `;
 
 const MovieList = styled.div`
