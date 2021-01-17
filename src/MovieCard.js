@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, {css} from 'styled-components'
+import { BrowserRouter as Router, Route, useHistory , Link , Switch } from "react-router-dom";
+import MoviePage from "./MoviePage";
+
 
 export default function MovieCard({movie}){
+
+    const ViewMoreBtn =() => {
+        return (
+            <>
+            <OverReview>{movie.overview}</OverReview>
+            <ReleaseDate>Release: {movie.release_date}</ReleaseDate>
+            </>
+        )
+    }
+    const trigger = document.querySelectorAll('#trigger');
+
+    
     return (
         <CardContainer>
             <CardThumbnail>
@@ -18,10 +33,19 @@ export default function MovieCard({movie}){
             </CardThumbnail>
 
             <CardContent>
-                <CardTitle href={movie.id}>{movie.original_title}</CardTitle>
+                <CardTitle>{movie.original_title}</CardTitle>
+
                 <div>
-                    <OverReview>{movie.overview}</OverReview>
-                    <ReleaseDate>Release: {movie.release_date}</ReleaseDate>
+                    <Router>
+                    <Switch>
+                    <>
+                    <Link to="/MoviePage">
+                        <Btn id="trigger">ViewMore</Btn>
+                    </Link>
+                    <Route path="/MoviePage" component={ViewMoreBtn}/>
+                    </>
+                    </Switch>
+                    </Router>
                 </div>
             </CardContent>
 
@@ -68,12 +92,12 @@ const CardContent = styled.div`
     margin:30px;
 `;
 
-const CardTitle = styled.a`
+const CardTitle = styled.p`
     font-family: HelveticaNeue;
     font-size:22px;
     font-weight: 600;
     text-align:left;
-    margin-bottom:17px;
+    line-height: 1.8;
     color:#fff;
     text-decoration:none;
     margin-bottom:20px;
@@ -92,4 +116,21 @@ const ReleaseDate = styled.p`
     font-size:10px;
     text-align:left;
 
+`;
+
+const Btn = styled.button`
+
+font-family: 'Roboto',sans-serif;
+    display: inline-block;
+    border: none;
+    height: 22px;
+    padding: 3px 4px 3px 4px;
+    margin-bottom:20px;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: 800;
+    background-image: linear-gradient(#6795fd 0%,#67ceff 100%);
+    -webkit-transition: .4s;
+    transition: .4s;
 `;
