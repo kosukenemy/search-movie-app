@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled, {css} from 'styled-components'
 import { BrowserRouter as Router, Route, useHistory , Link , Switch } from "react-router-dom";
 import MoviePage from "./MoviePage";
+import Home from "./Home";
 
 
 export default function MovieCard({movie}){

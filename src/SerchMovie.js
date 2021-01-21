@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components'
-import MovieCard from './MovieCard.js';
+import MovieCard from './MovieCard';
 
 export default function SearchMovie() {
 
@@ -24,6 +24,7 @@ export default function SearchMovie() {
             const res = await fetch(url);
             const data  = await res.json();
             setMovies(data.results);
+            console.log(data);
             
         } catch(err) {
             console.log(err)

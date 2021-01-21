@@ -5,17 +5,21 @@ import { BrowserRouter as Router, Route, useHistory , Link } from "react-router-
 import SearchMovie from './SerchMovie'; 
 import Main from './Main';
 import MoviePage from './MoviePage';
+import Home from './Home';
 
 
 function App() {
   return (
     <>
       <AppContainer>
-          <Main />
-          <SearchMovie />
+{/*           <Main /> */}
+{/*           <SearchMovie /> */}
       <>
+            {/* dev Home */}
+            <Home />
       </>
       </AppContainer>
+
     </>
   );
 }
