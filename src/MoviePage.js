@@ -8,4 +8,4 @@ const MoviePage = () => {
         </h2>
     )
 }
-export default withRouter(MoviePage);
+export default MoviePage;

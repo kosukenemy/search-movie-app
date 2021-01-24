@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled, {css} from 'styled-components'
 import { BrowserRouter as Router, Route, useHistory , Link , Switch } from "react-router-dom";
-import MoviePage from "./MoviePage";
-import Home from "./Home";
 
 
 export default function MovieCard({movie}){
@@ -55,13 +53,8 @@ export default function MovieCard({movie}){
 }
 
 const CardContainer = styled.div`
-    width:90%;
-    display: flex;
-    align-items:center;
-    margin: 30px auto 10px;
-    border-bottom: 1px solid #999;
-    padding-bottom: 30px;
-    color:#fff;
+      grid-row:2;
+  grid-column:2;
 `;
 
 const CardThumbnail = styled.div`

@@ -36,7 +36,7 @@ export default function SearchMovie() {
             <SearchForm onSubmit={searchMovies}>
                 <label className="label" htmlFor="query">
                 </label>
-                <SearchFormTitle>キーワードから映画を検索</SearchFormTitle>
+{/*                 <SearchFormTitle>キーワードから映画を検索</SearchFormTitle> */}
                 <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="i.e Jurassic Park, 2020,   " value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <SubmitBtn className="button" type="submit">
                     Search
@@ -46,19 +46,18 @@ export default function SearchMovie() {
                     <p id="searchResults"></p>
                 </SearchResults>
             </SearchForm>
-            <MovieList>
+            <>
                 {movies.filter(movie => movie.poster_path).map(movie => (
                     <MovieCard movie={movie} key={movie.id}/>
                 ))}
-            </MovieList>
+            </>
         </>
     )
 }
 
 
 const SearchForm = styled.form`
-    margin: 30px auto 100px;
-    width: 621px;
+
 `;
 
 const SearchFormTitle = styled.p`
@@ -73,8 +72,8 @@ const SearchFormTitle = styled.p`
 
 const InputText = styled.input`
     font-family: 'Roboto', sans-serif;
-    width:480px;
-    height:50px;
+    width:280px;
+    height:40px;
     padding-left: 10px;
     border: 0.2px solid #999;
 `;
@@ -82,8 +81,8 @@ const SubmitBtn = styled.button`
     font-family: 'Roboto', sans-serif;
     display: inline-block;
     border:none;
-    height: 52px;
-    padding: 3px 44px 3px 44px;
+    height: 42px;
+    padding: 3px 24px 3px 24px;
     text-decoration: none;
     color: #FFF;
     font-weight:800;
@@ -105,6 +104,3 @@ const SearchResults = styled.div`
 
 `;
 
-const MovieList = styled.div`
-
-`;
