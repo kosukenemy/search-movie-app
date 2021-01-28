@@ -7,9 +7,7 @@ function Main() {
     return (
         <>
         <MainColmun>
-            <h3>有名な作品</h3>
-            <PopularMovie />
-            <h3>人気な作品</h3>
+            <h3>Popular Movies</h3>
             <PopularMovie />
         </MainColmun>
         </>
@@ -48,7 +46,7 @@ const MainColmun = styled.main`
 
   h3 {
     margin: 20px auto 10px 6px;
-    color:#fff;
+    color:#192A59;
     font-size:19px;
     font-weight: 600;
     letter-spacing:0.02em;

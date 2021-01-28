@@ -13,6 +13,7 @@ import Main from './components/Main';
 
 import MoviePage from './MoviePage';
 import SearchMovie from './SerchMovie';
+import ViewMore from './ViewMore';
 
 
 
@@ -30,6 +31,7 @@ function App() {
             <>
               <MainColmun>
               <Route exact path="/" component={Main} />
+              <Route exact path="/ViewMore" component={ViewMore} />
               <>
               <Route path="/MENU2" component={MoviePage} />
               </>
@@ -77,7 +79,7 @@ const AppContainer = styled.div`
     margin:0 auto;
     display:grid;
     grid-template-rows: 70px 1fr 100px; 
-    grid-template-columns: 200px 1fr;    
+    grid-template-columns: 240px 1fr;    
     min-height:100vh;
     column-gap: 12px;
 `;

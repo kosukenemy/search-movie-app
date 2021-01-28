@@ -32,7 +32,7 @@ export const media = {
 }
 
 const Column = styled.div`
-  background:#131921;
+  background:#fafafa;
   grid-row: 1;
   grid-column: 1 / span 2;
 

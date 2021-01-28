@@ -32,7 +32,7 @@ export const media = {
 }
 
 const Column = styled.footer`
-  background:#131921;
+  background:#3F5AA6;
   grid-row:3;
   grid-column: 1 / span 2;
 `;

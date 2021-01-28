@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import styled, {css} from 'styled-components'
 import { BrowserRouter, Route, Link , Switch, Router } from 'react-router-dom';
 import MoviePage from './MoviePage';
+import ViewMore from './ViewMore';
 
 const PopularMovie = () => {
     const [movies , setMovies ] = useState([]);
@@ -25,18 +26,24 @@ const PopularMovie = () => {
         }
     }, []);
 
+    for (let i = 0; i < movies.length; i++) {
+        const Nodes = movies[i];
+        console.log(Nodes)
+    }
+
+
 
     return (
         
         <Inner>
         <>
             {movies.filter(movie => movie.poster_path).map(movie => (
-                <div key={movie.id}>
+                <li key={movie.id}>
 
                     <>
-                    <Link to="/ViewMore">
+                    <Link to={`${process.env.PUBLIC_URL}/movie/${movie.id}`}>
                     <img 
-                        src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+                        src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                         alt={movie.title + ' poster'}
                         />
                     <div className="movieTitle">
@@ -46,9 +53,8 @@ const PopularMovie = () => {
                     </div>
                     </Link>
                     </>
-
-                </div>
-            ))}
+                </li>
+            ))} 
         </>
         </Inner>
     )
@@ -59,34 +65,35 @@ export default PopularMovie;
 
 
 const Inner = styled.ul`
-    display: flex;
+display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 15rem));
+    place-content: space-between space-evenly;
+    -webkit-box-align: start;
+    align-items: start;
+    padding: 4rem 0px;
+    gap: 2rem;
 
-    div {
+    li {
         position: relative;
-        margin: 0 auto;
+        list-style:none;
 
         img {
-        width:12vw;
-        padding: 0px 6px;
+        width:100%;
+        height: 23rem;
+        border-radius: 1rem;
         }
         .movieTitle {
-            position: absolute;
-            left: 12px;
-            bottom:8px; 
-            color:#fff;
-            width:12vw;
+            color:#192A59;
+            width:100%;
             
 
             p { 
                 font-size: 12px;
                 font-weight:600;
+                text-align:center;
             }
         }
 
-        &:hover {
-            transform:scale(1.1);
-            transition:all 0.2s ease-in;
-        }
 
     }
 `;

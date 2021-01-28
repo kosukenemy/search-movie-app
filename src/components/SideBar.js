@@ -47,9 +47,10 @@ export const media = {
 
 
 const Nav　= styled.nav`
-  background:#F9F9F9;
+  background:#fafafa;
   grid-row:2;
   grid-column:1;
+  border-right : solid 1px #E0E2E7;
 
   ${media.phone`
     display:none;
@@ -58,7 +59,11 @@ const Nav　= styled.nav`
     ul {
       li {
         padding:20px;
-        border-bottom: solid 1px #f4f4f4;
+        font-size:12px;
+        
+        a {
+            color:#333;
+        }
       }
     }
 `;
