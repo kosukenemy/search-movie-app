@@ -1,7 +1,7 @@
 
 import './App.css';
 import styled, {css} from 'styled-components'
-import { BrowserRouter, Route, Router } from "react-router-dom";
+import { BrowserRouter, Route, Router , Switch, useParams } from "react-router-dom";
 
 
 
@@ -18,12 +18,11 @@ import ViewMore from './ViewMore';
 
 
 
-
-
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Switch>
         <AppContainer>
           <Header />
           <>
@@ -31,9 +30,9 @@ function App() {
             <>
               <MainColmun>
               <Route exact path="/" component={Main} />
-              <Route exact path="/ViewMore" component={ViewMore} />
+{/*               <Route exact path="{`${process.env.PUBLIC_URL}/movie/${movie.id}" component={ViewMore} /> */}
               <>
-              <Route path="/MENU2" component={MoviePage} />
+              <Route path="/movie/:movie_id" component={ViewMore} />
               </>
               <>
               <Route path="/MENU3" component={SearchMovie} />
@@ -43,6 +42,7 @@ function App() {
           </>
           <Footer />
         </AppContainer>
+        </Switch>
       </BrowserRouter>
 
     </>

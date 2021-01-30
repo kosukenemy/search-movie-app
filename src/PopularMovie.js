@@ -1,12 +1,21 @@
 import React, {useState} from 'react';
 import { useEffect } from 'react';
 import styled, {css} from 'styled-components'
-import { BrowserRouter, Route, Link , Switch, Router } from 'react-router-dom';
-import MoviePage from './MoviePage';
-import ViewMore from './ViewMore';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams
+    } from "react-router-dom";
+
+
 
 const PopularMovie = () => {
+
     const [movies , setMovies ] = useState([]);
+    const [Key , setKey ] = useState("");
     const url = "https://api.themoviedb.org/3/movie/popular?api_key=0fc8e9e04a9029823b63bf639cf9752d&language=ja&page=1&include_adult=false";
 
     useEffect(() => {
@@ -19,29 +28,23 @@ const PopularMovie = () => {
                 setMovies(data.results)
                 console.log(data)
                 console.log(movies)
-    
-            })
+            }); 
         } catch(err) {
             console.log(err)
         }
-    }, []);
 
-    for (let i = 0; i < movies.length; i++) {
-        const Nodes = movies[i];
-        console.log(Nodes)
-    }
+    }, []);
 
 
 
     return (
-        
         <Inner>
         <>
             {movies.filter(movie => movie.poster_path).map(movie => (
                 <li key={movie.id}>
 
                     <>
-                    <Link to={`${process.env.PUBLIC_URL}/movie/${movie.id}`}>
+                    <Link to={'/movie/' + movie.id}>
                     <img 
                         src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                         alt={movie.title + ' poster'}
@@ -49,6 +52,7 @@ const PopularMovie = () => {
                     <div className="movieTitle">
                         <p>
                             {movie.original_title}
+                           {/*  {`${process.env.PUBLIC_URL}/movie/${movie.id}`} */}
                         </p>
                     </div>
                     </Link>
@@ -56,11 +60,11 @@ const PopularMovie = () => {
                 </li>
             ))} 
         </>
+
         </Inner>
     )
 }
 export default PopularMovie;
-
 
 
 
