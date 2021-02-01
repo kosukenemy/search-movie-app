@@ -11,10 +11,9 @@ import {
 import styled, {css} from 'styled-components';
 
 
-function ViewMore() {
+function ViewMore({movies}) {
     const [data, setData] = useState(null);
     const [movieId , setmovieId ] = useState('651571');
-
 
 
     useEffect( () => {
@@ -25,9 +24,12 @@ function ViewMore() {
             setData(jsonData);
             console.log(jsonData);
             console.log(response);
+
         }
         fetchData();
     },[])
+
+
 
 
     return (
@@ -42,6 +44,9 @@ function ViewMore() {
                 />
             </div>
             <p>{data.overview}</p>
+            <p>
+            
+            </p>
 
             </>
             )}

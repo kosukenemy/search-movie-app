@@ -1,12 +1,16 @@
 import React from "react";
 import styled, {css} from 'styled-components'
+
 import PopularMovie from '../PopularMovie';
 
+//Page
+import HeroImage from '../page/HeroImage';
 
 function Main() {
     return (
         <>
         <MainColmun>
+            <HeroImage />
             <h3>Popular Movies</h3>
             <PopularMovie />
         </MainColmun>

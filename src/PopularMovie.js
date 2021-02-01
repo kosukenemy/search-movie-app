@@ -35,13 +35,25 @@ const PopularMovie = () => {
 
     }, []);
 
+    for (let i = 0; i < movies.length; i++) {
+        const movieId = movies[i].id;
+        const DetailUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=0fc8e9e04a9029823b63bf639cf9752d&language=en&page=1`;
+        console.log(DetailUrl)
+    }  
+    
+
+    function ClickObj(){
+        const ey = document.getElementById('detailKeys');
+        console.log(ey)
+    }
+    ClickObj();
 
 
     return (
         <Inner>
         <>
             {movies.filter(movie => movie.poster_path).map(movie => (
-                <li key={movie.id}>
+                <li key={movie.id} id="detailKeys">
 
                     <>
                     <Link to={'/movie/' + movie.id}>
@@ -52,10 +64,13 @@ const PopularMovie = () => {
                     <div className="movieTitle">
                         <p>
                             {movie.original_title}
-                           {/*  {`${process.env.PUBLIC_URL}/movie/${movie.id}`} */}
                         </p>
                     </div>
                     </Link>
+                    </>
+
+                    <>
+
                     </>
                 </li>
             ))} 
