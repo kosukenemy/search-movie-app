@@ -1,10 +1,9 @@
 body {
   background-color: #fafafa; /* #282c34 */ /* #F3F3F3; */
   font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
 }
 
-a { text-decoration: none; }
+a { text-decoration: none !important; }
 
 * {
   margin: 0;

@@ -11,9 +11,8 @@ import SideBar from './components/SideBar';
 import Footer from './components/Footer';
 import Main from './components/Main';
 
-import MoviePage from './MoviePage';
 import SearchMovie from './SerchMovie';
-import ViewMore from './ViewMore';
+import MovieDetail from './page/MovieDetail';
 
 
 
@@ -27,13 +26,12 @@ function App() {
         <AppContainer>
           <Header />
           <>
-            <SideBar />
+  {/*           <SideBar /> */}
             <>
               <MainColmun>
               <Route exact path="/" component={Main} />
-{/*               <Route exact path="{`${process.env.PUBLIC_URL}/movie/${movie.id}" component={ViewMore} /> */}
               <>
-              <Route path="/movie/:movie_id" component={ViewMore} />
+              <Route path="/movie/:id" component={MovieDetail} />
               </>
               <>
               <Route path="/MENU3" component={SearchMovie} />
@@ -78,7 +76,7 @@ const AppContainer = styled.div`
     overflow: hidden;
     width:100%;
     margin:0 auto;
-    display:grid;
+/*     display:grid; */
     grid-template-rows: 70px 1fr 100px; 
     grid-template-columns: 240px 1fr;    
     min-height:100vh;
