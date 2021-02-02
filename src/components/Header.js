@@ -32,16 +32,16 @@ export const media = {
 }
 
 const Column = styled.div`
-  background:#fafafa;
-  grid-row: 1;
-  grid-column: 1 / span 2;
+    background:#fff;/*#eeeeee */
+    grid-row: 1;
+    grid-column: 1 / span 2;
+    box-shadow:-6px -6px 14px rgb(255 255 255 / 70%), -6px -6px 10px rgb(255 255 255 / 50%), 6px 6px 8px rgb(255 255 255 / 8%), 6px 6px 10px rgb(0 0 0 / 15%);
+    display: flex;
+    align-items:center;
 
-  display: flex;
-  align-items:center;
 
-
-  h1 {
-    color:#fff;
-    margin: 19px;
-  }
+    h1 {
+        color:#444;
+        margin: 10px 20px;
+    }
 `;

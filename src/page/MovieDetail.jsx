@@ -18,6 +18,9 @@ function MovieDetail({match}) {
         <DetailContainer>
             <div className="row mt-2">
                 <div className="col text-center" style={{width: '100%'}}>
+                    <div>
+                        {detail.title}
+                    </div>
                     <img className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
                 </div>
             </div>

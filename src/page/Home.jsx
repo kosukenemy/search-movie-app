@@ -24,12 +24,14 @@ export default function HeroImage(){
             <div key={index}>
                 <Carousel>
                     <Link to={`/movie/${item.id}`}>
-                    <div>
-                        <div>
-                        {item.title}
-                        </div>
+                    <CarouselPoster>
+                        <CarouselPosterContents>
+                            <p>
+                                {item.title}
+                            </p>
+                        </CarouselPosterContents>
                         <img src={item.backPoster} alt={item.title}/>
-                    </div>
+                    </CarouselPoster>
                     </Link>
                 </Carousel>
                 
@@ -107,9 +109,26 @@ const Carousel = styled.div`
     }
 `;
 
+const CarouselPoster = styled.div`
+    position:relative;
+`;
+
+const CarouselPosterContents = styled.div`
+    position:absolute;
+    left: 20px;
+    top: 10px;
+
+    p {
+        color:#fff;
+        font-size:20px;
+        font-weight: 500;
+    }
+`;
+
 
 const Inner = styled.div`
-    width:1080px;
+    width:98%;
+    max-width: 1080px;
     margin:0 auto;
 
 `;
@@ -122,7 +141,7 @@ display: grid;
     -webkit-box-align: start;
     align-items: start;
     padding: 0rem 0px;
-    gap: 2rem;
+    gap: 2rem 1rem;
 `;
 
 const Card = styled.div`

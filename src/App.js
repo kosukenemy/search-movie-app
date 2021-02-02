@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Router , Switch, useParams } from "react-router-d
 
 // component
 import Header from './components/Header';
-import SideBar from './components/SideBar';
+/* import SideBar from './components/SideBar'; */
 import Footer from './components/Footer';
 import Main from './components/Main';
 
@@ -26,7 +26,7 @@ function App() {
         <AppContainer>
           <Header />
           <>
-  {/*           <SideBar /> */}
+{/*             <SideBar /> */}
             <>
               <MainColmun>
               <Route exact path="/" component={Main} />
@@ -77,7 +77,7 @@ const AppContainer = styled.div`
     width:100%;
     margin:0 auto;
 /*     display:grid; */
-    grid-template-rows: 70px 1fr 100px; 
+    grid-template-rows: 40px 1fr 100px; 
     grid-template-columns: 240px 1fr;    
     min-height:100vh;
     column-gap: 12px;
