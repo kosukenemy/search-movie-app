@@ -18,18 +18,22 @@ function MovieDetail({match}) {
         <DetailContainer>
             <div className="row mt-2">
                 <div className="col text-center" style={{width: '100%'}}>
-                    <div>
+                    <h4 style={{color:'#fff'}}>
                         {detail.title}
-                    </div>
+                    </h4>
                     <img className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
                 </div>
             </div>
             <div>
-                {detail.title}
-                {detail.homepage}
-                <div>
+                <p style={{color:'#fff'}}>
+                    {detail.title}
+                </p>
+                <a href={detail.homepage} target="_blank" rel="noreferrer">
+                    HP
+                </a>
+                <p style={{color:'#fff'}}>
                     {detail.overview}
-                </div>
+                </p>
             </div>
         </DetailContainer>
     )

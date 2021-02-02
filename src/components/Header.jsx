@@ -1,11 +1,13 @@
 import React from "react";
 import styled, {css} from 'styled-components'
+import SideBar from '../components/SideBar';
 
 function Header(){
     return (
         <>
         <Column>
             <h1>Header</h1>
+            <SideBar />
         </Column>
         </>
     )
@@ -32,12 +34,13 @@ export const media = {
 }
 
 const Column = styled.div`
-    background:#fff;/*#eeeeee */
+    background:#191919;
     grid-row: 1;
     grid-column: 1 / span 2;
-    box-shadow:-6px -6px 14px rgb(255 255 255 / 70%), -6px -6px 10px rgb(255 255 255 / 50%), 6px 6px 8px rgb(255 255 255 / 8%), 6px 6px 10px rgb(0 0 0 / 15%);
+    border-bottom: #444;
     display: flex;
     align-items:center;
+    
 
 
     h1 {

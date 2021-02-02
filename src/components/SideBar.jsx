@@ -47,23 +47,25 @@ export const media = {
 
 
 const Nav　= styled.nav`
-  background:#fafafa;
-  grid-row:2;
-  grid-column:1;
-  border-right : solid 1px #E0E2E7;
+    
 
-  ${media.phone`
-    display:none;
-    `}
+    ${media.phone`
+        display:none;
+        `}
 
-    ul {
-      li {
-        padding:20px;
-        font-size:12px;
-        
-        a {
-            color:#333;
+        ul {
+            width:250px;
+            display:flex;
+            justify-content:space-between;
+            align-self: center;
+            margin-bottom:0 !important;
+        li {
+            list-style:none;
+            font-size:12px;
+                a {
+                    color:#333;
+                    font-weight:bold;
+                }
+            }
         }
-      }
-    }
 `;

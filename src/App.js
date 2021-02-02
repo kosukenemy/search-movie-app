@@ -7,7 +7,6 @@ import { BrowserRouter, Route, Router , Switch, useParams } from "react-router-d
 
 // component
 import Header from './components/Header';
-/* import SideBar from './components/SideBar'; */
 import Footer from './components/Footer';
 import Main from './components/Main';
 
@@ -24,9 +23,9 @@ function App() {
       <BrowserRouter>
         <Switch>
         <AppContainer>
-          <Header />
+          <Header/>
           <>
-{/*             <SideBar /> */}
+
             <>
               <MainColmun>
               <Route exact path="/" component={Main} />
@@ -76,11 +75,10 @@ const AppContainer = styled.div`
     overflow: hidden;
     width:100%;
     margin:0 auto;
-/*     display:grid; */
-    grid-template-rows: 40px 1fr 100px; 
-    grid-template-columns: 240px 1fr;    
+    display:grid;
+    grid-template-rows: 60px 1fr 100px; 
+    grid-template-columns: 1fr;
     min-height:100vh;
-    column-gap: 12px;
 `;
 
 

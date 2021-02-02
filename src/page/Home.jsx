@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import styled, {css} from 'styled-components'
 
 
+
 import { fetchMovieByGenre, fetchMovies } from '../servies';
 
 import RBCarousel from "react-bootstrap-carousel";
 
-export default function HeroImage(){
+export default function Home(){
     const [nowPlaying, setNowPlaying] = useState([]);
     const [movieByGenre ,setMovieByGenre ] = useState([]);
 
@@ -16,6 +17,7 @@ export default function HeroImage(){
         const fetchApi = async () => {
             setNowPlaying(await fetchMovies());
             setMovieByGenre(await fetchMovieByGenre());
+            console.log(movieByGenre);
         }
         fetchApi();
     }, [])
@@ -26,9 +28,14 @@ export default function HeroImage(){
                     <Link to={`/movie/${item.id}`}>
                     <CarouselPoster>
                         <CarouselPosterContents>
-                            <p>
-                                {item.title}
-                            </p>
+                            <TopMovietitle>
+                                <p>
+                                    FEATURE
+                                </p>
+                                <h2>
+                                    "{item.title}"
+                                </h2>
+                            </TopMovietitle>
                         </CarouselPosterContents>
                         <img src={item.backPoster} alt={item.title}/>
                     </CarouselPoster>
@@ -47,14 +54,16 @@ export default function HeroImage(){
                     <Link to={`/movie/${item.id}`}>
                         <img style={{
                             width:'100%', height:'23rem',
-                            borderRadius: '0.2rem'
+                            borderRadius: '0.2rem',
+                            border: 'solid 1px #444',
                         }} src={item.poster} alt={item.title}/>
 
                         <p className="mt-2" style={{
-                            color: '#192A59',
+                            color: '#fff',
                             fontSize: '14px',
                             fontWeight : 'bold',
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            marginBottom : '0'
                         }}>{item.title}</p>
 
                     </Link>
@@ -84,7 +93,9 @@ export default function HeroImage(){
                 <h3 style={{
                     fontSize: '26px',
                     fontWeight: 'bold',
-                    marginTop: '80px'
+                    margin:'20px auto 10px',
+                    marginTop: '80px',
+                    color:'#fff',
                 }}>Discover Movie</h3>
                 <MovieListInner>
                     {movieList}
@@ -103,9 +114,13 @@ const HomeContainer = styled.div`
 `;
 
 const Carousel = styled.div`
+    width:100vw;
+    display:block;
+    margin :0 auto;
+
     img {
         width:100%;
-        margin :0 auto;
+
     }
 `;
 
@@ -115,19 +130,29 @@ const CarouselPoster = styled.div`
 
 const CarouselPosterContents = styled.div`
     position:absolute;
-    left: 20px;
-    top: 10px;
+    left: 30px;
+    bottom: 50px;
 
-    p {
-        color:#fff;
-        font-size:20px;
+    h2 {
         font-weight: 500;
+        letter-spacing:0.02em;
+        color:#fff;
+    }
+`;
+
+const TopMovietitle = styled.div`
+    p {
+        background-color:#fff;
+        padding:5px 10px;
+        font-weight:bold;
+        color:#444;
+        opacity:0.7;
+        letter-spacing:0.04rem;
     }
 `;
 
 
 const Inner = styled.div`
-    width:98%;
     max-width: 1080px;
     margin:0 auto;
 
@@ -135,15 +160,14 @@ const Inner = styled.div`
 
 
 const MovieListInner = styled.ul`
-display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 15rem));
-    place-content: space-between space-evenly;
-    -webkit-box-align: start;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 10rem));
+    place-content: center space-between;
     align-items: start;
     padding: 0rem 0px;
     gap: 2rem 1rem;
 `;
 
 const Card = styled.div`
-
+    width:100%;
 `;
