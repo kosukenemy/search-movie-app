@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 
 
 
@@ -17,7 +17,6 @@ export default function Home(){
         const fetchApi = async () => {
             setNowPlaying(await fetchMovies());
             setMovieByGenre(await fetchMovieByGenre());
-            console.log(movieByGenre);
         }
         fetchApi();
     }, [])
@@ -142,6 +141,7 @@ const CarouselPosterContents = styled.div`
 
 const TopMovietitle = styled.div`
     p {
+        width:96px;
         background-color:#fff;
         padding:5px 10px;
         font-weight:bold;
