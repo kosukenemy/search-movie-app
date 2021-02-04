@@ -5,18 +5,20 @@ import styled from 'styled-components'
 
 
 
-import { fetchMovieByGenre, fetchMovies } from '../servies';
+import { fetchMovieByGenre, fetchMovies , fetchTopratedMovie } from '../servies';
 
 import RBCarousel from "react-bootstrap-carousel";
 
 export default function Home(){
     const [nowPlaying, setNowPlaying] = useState([]);
     const [movieByGenre ,setMovieByGenre ] = useState([]);
+    const [movieToprated , setMovieToprated ] = useState([]);
 
     useEffect(() => {
         const fetchApi = async () => {
             setNowPlaying(await fetchMovies());
             setMovieByGenre(await fetchMovieByGenre());
+            setMovieToprated(await fetchTopratedMovie());
         }
         fetchApi();
     }, [])
@@ -71,6 +73,31 @@ export default function Home(){
         );
     });
 
+    const topMovies = movieToprated.slice(0 ,8).map((item , index) => {
+        return (
+            <div key={index}>
+                <Card>
+                    <Link to={`/movie/${item.id}`}>
+                        <img style={{
+                            width:'100%', height:'23rem',
+                            borderRadius: '0.2rem',
+                            border: 'solid 1px #444',
+                        }} src={item.poster} alt={item.title}/>
+
+                        <p className="mt-2" style={{
+                            color: '#fff',
+                            fontSize: '14px',
+                            fontWeight : 'bold',
+                            textAlign: 'center',
+                            marginBottom : '0'
+                        }}>{item.title}</p>
+
+                    </Link>
+                </Card>
+            </div>
+        );
+    });
+
     
     return (
         <HomeContainer>
@@ -99,6 +126,18 @@ export default function Home(){
                 <MovieListInner>
                     {movieList}
                 </MovieListInner>
+                <>
+                <h3 className="mt-10" style={{
+                    fontSize: '26px',
+                    fontWeight: 'bold',
+                    margin:'20px auto 10px',
+                    marginTop: '80px',
+                    color:'#fff',
+                }}>TopRated Movie</h3>
+                <MovieListInner>
+                {topMovies}
+                </MovieListInner>
+                </>
             </Inner>
 
         </HomeContainer>

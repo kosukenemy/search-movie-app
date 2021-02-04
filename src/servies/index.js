@@ -33,9 +33,7 @@ export const fetchMovies = async() => {
         return modifiedData;
 
 
-    } catch(err) {
-        console.log(err)
-    }
+    } catch(err) { }
 }
 
 export const fetchGenre = async () => {
