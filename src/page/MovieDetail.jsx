@@ -13,21 +13,23 @@ function MovieDetail({match}) {
         const FetchAPI = async() => {
             setDetail(await fetchMovieDetail(params.id));
             setCasts(await fetchCasts(params.id));
-            console.log(casts)
         };
         FetchAPI();
     }, [params.id]);
 
     const person = casts.map((item, index) => {
         return (
-            <div key={index}>
-                <p　style={{ color:'#fff'}}>
-                    {item.name} / {item.character}
-                </p>
+            <Peformer key={index}>
                 <div>
-                    <img src={item.img} alt={item.title}/>
+                    <img style={{width:'150px'}} src={item.img} alt={item.title}/>
+                    <p　style={{ color:'#fff', fontSize:'14px', marginBottom:'2px', fontWeight:'bold'}}>
+                        {item.name} / 
+                        <span style={{display:'block', fontWeight:'normal'}}>
+                            {item.character}
+                        </span>
+                    </p>
                 </div>
-            </div>
+            </Peformer>
         )
     })
 
@@ -47,21 +49,23 @@ function MovieDetail({match}) {
                             {detail.overview}
                         </p>
                         <a href={detail.homepage} target="_blank" rel="noreferrer">
-                            HP
+                            公式サイトをみる
                         </a>
                     </Contents>
                 </InnerContents>
             </KeyVisualContainer>
+            <>
             <div>
-                <div className="staffCredit">
-                    <p style={{color:'#fff', fontWeight:'bold', fontSize:'20px' }}> 
+                <PeformerContainer>
+                    <p style={{color:'#fff', fontWeight:'bold', fontSize:'24px' ,letterSpacing:'0.04rem' }}> 
                         出演者
                     </p>
-                    <div>
+                    <Card>
                         {person}
-                    </div>
-                </div>
+                    </Card>
+                </PeformerContainer>
             </div>
+            </>
         </DetailContainer>
     )
 }
@@ -115,6 +119,7 @@ const Contents = styled.div`
     width:50%;
     z-index: 2;
     position: relative;
+    overflow:hidden;
 
     h2 {
             color:#fff;
@@ -130,4 +135,21 @@ const Contents = styled.div`
         line-height:1.8;
     }
 
+`;
+
+const PeformerContainer = styled.div`
+    max-width: 1080px;
+    margin: 0 auto;
+`;
+
+const Peformer = styled.div`
+    width:15%;
+
+
+`;
+
+const Card = styled.div`
+    display:flex;
+    overflow-x: scroll;
+    gap:1rem;
 `;

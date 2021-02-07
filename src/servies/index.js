@@ -185,3 +185,15 @@ export const fetchSimilarMovie = async (id) => {
         return modifiedData;
     } catch (error) { }
 }
+
+export const FetchMovieReview = async(id) => {
+    try {
+        const { data } = await axios.get(`${movieUrl}/${id}/reviews`, {
+            params: {
+                api_key: apiKey,
+                language: 'ja'
+            }
+        })
+
+    } catch(error){}
+}
