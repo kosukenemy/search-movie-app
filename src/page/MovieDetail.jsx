@@ -1,6 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect ,useState } from 'react';
 import { fetchCasts, fetchMovieDetail } from '../servies';
 import styled from 'styled-components'
 
@@ -9,13 +8,14 @@ function MovieDetail({match}) {
     const [detail, setDetail] = useState([]); 
     const [casts , setCasts] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => {   
         const FetchAPI = async() => {
             setDetail(await fetchMovieDetail(params.id));
             setCasts(await fetchCasts(params.id));
         };
         FetchAPI();
     }, [params.id]);
+
 
     const person = casts.map((item, index) => {
         return (
@@ -45,9 +45,9 @@ function MovieDetail({match}) {
                         <h2>
                             {detail.title}
                         </h2>
-                        <p>
+                        <OverReviewText>
                             {detail.overview}
-                        </p>
+                        </OverReviewText>
                         <a href={detail.homepage} target="_blank" rel="noreferrer">
                             公式サイトをみる
                         </a>
@@ -70,6 +70,10 @@ function MovieDetail({match}) {
     )
 }
 export default MovieDetail;
+
+
+
+
 
 
 const DetailContainer = styled.div`
@@ -111,6 +115,13 @@ const BlackMask = styled.div`
     rgba(23,23,23,.82) 60%,rgba(23,23,23,.75) 65%,rgba(23,23,23,.63) 70%, 
     rgba(23,23,23,.45) 75%,rgba(23,23,23,.27) 80%,rgba(23,23,23,.15) 85%, 
     rgba(23,23,23,.08) 90%,rgba(23,23,23,.03) 95%,rgba(23,23,23,0) 100%);
+`;
+
+const OverReviewText = styled.p`
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 13;
+    overflow: hidden;
 `;
 
 const Contents = styled.div`
