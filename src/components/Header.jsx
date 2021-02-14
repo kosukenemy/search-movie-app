@@ -1,17 +1,20 @@
 import React from "react";
 import styled, {css} from 'styled-components'
+import { Link } from "react-router-dom";
 import SideBar from '../components/SideBar';
 
 function Header(){
     return (
         <>
         <Column>
+            <Link to="/">
             <div>
                 <img style={{
-                    width:'100px',
+                    width:'110px',
                     margin:'0px 40px'
                 }} src={`${process.env.PUBLIC_URL}/logo.svg`} />
             </div>
+            </Link>
             <SideBar />
         </Column>
         </>
@@ -39,7 +42,7 @@ export const media = {
 }
 
 const Column = styled.div`
-    background:#191919;
+    background:#000;
     grid-row: 1;
     grid-column: 1 / span 2;
     border-bottom: #444;

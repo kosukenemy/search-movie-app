@@ -48,3 +48,5 @@ a { text-decoration: none !important; }
     transform: rotate(360deg);
   }
 }
+
+.hide { opacity: 0; transition: all 0.5s ease-in-out;}

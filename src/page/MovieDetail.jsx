@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect ,useState } from 'react';
+import { useEffect ,useState , useRef  } from 'react';
 import { fetchCasts, fetchMovieDetail } from '../servies';
 import styled from 'styled-components'
 
@@ -21,7 +21,7 @@ function MovieDetail({match}) {
         return (
             <Peformer key={index}>
                 <div>
-                    <img style={{width:'150px'}} src={item.img} alt={item.title}/>
+                    <img style={{width:'150px'}} src={item.img} onError={(e) => e.target.src = `${process.env.PUBLIC_URL}/asset/person_null.png`} alt={item.title}/>
                     <p　style={{ color:'#fff', fontSize:'14px', marginBottom:'2px', fontWeight:'bold'}}>
                         {item.name} / 
                         <span style={{display:'block', fontWeight:'normal'}}>
@@ -32,6 +32,15 @@ function MovieDetail({match}) {
             </Peformer>
         )
     })
+    const els = useRef("")
+    useEffect(() => {
+        const { current } = els;
+
+        const LateDisplay = () => {
+            current.classList.remove('hide');
+        }
+        setTimeout(LateDisplay, 1000);
+    });
 
 
     return (
@@ -57,7 +66,7 @@ function MovieDetail({match}) {
             </KeyVisualContainer>
             <>
             <div>
-                <PeformerContainer className="performerArea">
+                <PeformerContainer ref={els} className="hide">
                     <p style={{color:'#fff', fontWeight:'bold', fontSize:'24px' ,letterSpacing:'0.04rem' }}> 
                         出演者
                     </p>
