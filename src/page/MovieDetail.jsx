@@ -1,17 +1,20 @@
 import React from 'react';
 import { useEffect ,useState , useRef  } from 'react';
-import { fetchCasts, fetchMovieDetail } from '../servies';
+import { fetchCasts, fetchMovieDetail, fetchMovieVideos } from '../servies';
 import styled from 'styled-components'
 
 function MovieDetail({match}) {
     let params = match.params;
     const [detail, setDetail] = useState([]); 
     const [casts , setCasts] = useState([]);
+    const [detailVideo, setDetailVideo] = useState([]);
+
 
     useEffect(() => {   
         const FetchAPI = async() => {
             setDetail(await fetchMovieDetail(params.id));
             setCasts(await fetchCasts(params.id));
+            setDetailVideo(await fetchMovieVideos(params.id));
         };
         FetchAPI();
     }, [params.id]);
@@ -31,7 +34,7 @@ function MovieDetail({match}) {
                 </div>
             </Peformer>
         )
-    })
+    });
     const els = useRef("")
     useEffect(() => {
         const { current } = els;
@@ -39,8 +42,9 @@ function MovieDetail({match}) {
         const LateDisplay = () => {
             current.classList.remove('hide');
         }
-        setTimeout(LateDisplay, 1000);
+        setTimeout(LateDisplay, 1500);
     });
+
 
 
     return (
@@ -65,16 +69,44 @@ function MovieDetail({match}) {
                 </InnerContents>
             </KeyVisualContainer>
             <>
-            <div>
-                <PeformerContainer ref={els} className="hide">
-                    <p style={{color:'#fff', fontWeight:'bold', fontSize:'24px' ,letterSpacing:'0.04rem' }}> 
+            <MovieDetailContent　ref={els} className="hide">
+                <MovieDetailInfo>
+                    <h3>
+                        詳細情報
+                    </h3>
+                    <p>
+                        リリース：{detail.release_date}
+                    </p>
+                    <p>
+                        評価：{detail.vote_average}
+                    </p>
+                    <p>
+                        評価したユーザー数：{detail.vote_count}人
+                    </p>
+                </MovieDetailInfo>
+
+                <YoutubeVideoContainer>
+                    <h4>トレーラー</h4>
+                    <div>
+                        <iframe className="iframeVideo" width="560" height="315" src={`https://www.youtube.com/embed/${detailVideo.key}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <p>
+                            {detailVideo.name}
+                        </p>
+                    </div>
+                </YoutubeVideoContainer>
+
+                <PeformerContainer>
+                    <p style={{color:'#fff', fontWeight:'bold', fontSize:'18px' ,letterSpacing:'0.04rem' }}> 
                         出演者
                     </p>
                     <Card>
                         {person}
                     </Card>
                 </PeformerContainer>
-            </div>
+
+
+            </MovieDetailContent>
+
             </>
         </DetailContainer>
     )
@@ -110,10 +142,7 @@ const InnerContents = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background :linear-gradient(to right,#171717 0,rgba(23,23,23,.98) 20%, 
-            rgba(23,23,23,.08) 100%,
-            rgba(23,23,23,.03) 70%,
-            rgba(23,23,23,0) 100%)
+    background :linear-gradient(to right,#171717 0,rgba(23,23,23,.98) 20%, rgba(23,23,23,.08) 100%,rgba(23,23,23,.03) 70%,rgba(23,23,23,0) 100%);
 `;
 
 const BlackMask = styled.div`
@@ -161,6 +190,57 @@ const Contents = styled.div`
         line-height:1.8;
     }
 
+`;
+
+const MovieDetailContent = styled.div`
+    max-width: 1080px;
+    margin: 30px auto 60px;
+`;
+
+const MovieDetailInfo = styled.div`
+    margin:0 auto 30px;
+    h3 {
+        color:#fff;
+        font-size:24px;
+        font-weight:bold;
+        letter-spacing:0.04rem;
+        margin-bottom:30px;
+    }
+    p {
+        color:#fff;
+        font-size:16px;
+        line-height:1.5;
+        letter-spacing:0.04rem;
+    }
+
+`;
+
+const YoutubeVideoContainer = styled.div`
+    width:100%;
+    margin:0 auto;
+    h4 {
+        color:#fff;
+        font-size:20px;
+        font-weight:bold;
+        letter-spacing:0.04rem;
+    }
+    div {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%;
+        z-index: 2;
+    }
+    .iframeVideo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    p {
+        text-align:center;
+        color:#fff;
+    }
 `;
 
 const PeformerContainer = styled.div`
