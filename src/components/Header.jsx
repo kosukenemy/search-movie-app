@@ -6,7 +6,12 @@ function Header(){
     return (
         <>
         <Column>
-            <h1>Header</h1>
+            <div>
+                <img style={{
+                    width:'100px',
+                    margin:'0px 40px'
+                }} src={`${process.env.PUBLIC_URL}/logo.svg`} />
+            </div>
             <SideBar />
         </Column>
         </>

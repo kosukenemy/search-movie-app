@@ -33,6 +33,7 @@ function MovieDetail({match}) {
         )
     })
 
+
     return (
         <DetailContainer>
             <KeyVisualContainer>
@@ -56,7 +57,7 @@ function MovieDetail({match}) {
             </KeyVisualContainer>
             <>
             <div>
-                <PeformerContainer>
+                <PeformerContainer className="performerArea">
                     <p style={{color:'#fff', fontWeight:'bold', fontSize:'24px' ,letterSpacing:'0.04rem' }}> 
                         出演者
                     </p>
@@ -69,6 +70,11 @@ function MovieDetail({match}) {
         </DetailContainer>
     )
 }
+
+
+
+
+
 export default MovieDetail;
 
 
