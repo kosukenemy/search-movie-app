@@ -42,7 +42,7 @@ function MovieDetail({match}) {
         const LateDisplay = () => {
             current.classList.remove('hide');
         }
-        setTimeout(LateDisplay, 1500);
+        setTimeout(LateDisplay, 1000);
     });
 
 

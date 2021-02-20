@@ -10,7 +10,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 
-import SearchMovie from './SerchMovie';
+import SearchMovie from './page/SerchMovie';
 import MovieDetail from './page/MovieDetail';
 
 
@@ -33,7 +33,7 @@ function App() {
               <Route path="/movie/:id" component={MovieDetail} />
               </>
               <>
-              <Route path="/MENU3" component={SearchMovie} />
+              <Route path="/search" component={SearchMovie} />
               </>
               </MainColmun>
             </>
@@ -84,7 +84,7 @@ const AppContainer = styled.div`
 
 const MainColmun = styled.main`
   grid-row:2;
-  grid-column:2;
+  grid-column:1;
   width:100%;
   overflow-x:hidden;
   ${media.phone`

@@ -8,6 +8,8 @@ const movieUrl = `${url}/movie`;
 const genreUrl = `${url}/genre/movie/list`;
 const moviesUrl = `${url}/discover/movie`;
 const personUrl = `${url}/trending/person/week`;
+const query = 'juraccis'
+const seachUrl = `${url}/search/movie/?api_key=${apiKey}&language=ja&query=${query}&page=1&include_adult=false`;
 
 export const fetchMovies = async() => {
     try {

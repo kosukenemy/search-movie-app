@@ -35,12 +35,11 @@ export default function SearchMovie() {
         <>
             <SearchForm onSubmit={searchMovies}>
                 <label className="label" htmlFor="query">
+                    <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="" value={query} onChange={(e) => setQuery(e.target.value)}/>
+                    <SubmitBtn className="button" type="submit">
+                        Search
+                    </SubmitBtn>
                 </label>
-{/*                 <SearchFormTitle>キーワードから映画を検索</SearchFormTitle> */}
-                <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="i.e Jurassic Park, 2020,   " value={query} onChange={(e) => setQuery(e.target.value)}/>
-                <SubmitBtn className="button" type="submit">
-                    Search
-                </SubmitBtn>
                 {/* 検索キーワード */}
                 <SearchResults>
                     <p id="searchResults"></p>
@@ -57,7 +56,8 @@ export default function SearchMovie() {
 
 
 const SearchForm = styled.form`
-
+    margin-top: 15px;
+    margin-right: 50px;
 `;
 
 const SearchFormTitle = styled.p`
@@ -72,8 +72,8 @@ const SearchFormTitle = styled.p`
 
 const InputText = styled.input`
     font-family: 'Roboto', sans-serif;
-    width:280px;
-    height:40px;
+    width:200px;
+    height: 30px;
     padding-left: 10px;
     border: 0.2px solid #999;
 `;
@@ -81,17 +81,13 @@ const SubmitBtn = styled.button`
     font-family: 'Roboto', sans-serif;
     display: inline-block;
     border:none;
-    height: 42px;
-    padding: 3px 24px 3px 24px;
     text-decoration: none;
     color: #FFF;
-    font-weight:800;
-    background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
+    background:transparent;
+    border: 1px solid #888;
+    border-radius: 2px;
     transition: .4s;
 
-    &:hover {
-        background-image: linear-gradient(#6795fd 0%, #67ceff 70%);
-    }
 `;
 
 const SearchResults = styled.div`

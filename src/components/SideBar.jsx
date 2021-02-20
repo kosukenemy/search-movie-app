@@ -1,17 +1,18 @@
 import React from "react";
 import styled, {css} from 'styled-components';
 import { BrowserRouter, Route, Link , Switch, Router } from 'react-router-dom';
+import SearchMovie from "../page/SerchMovie";
 
 function SideBar(){
     return (
     <>
     <Nav>
     <ul>
-        <li><Link to="/">
+{/*         <li><Link to="/">
         HOME
-        </Link></li>
-        <li><Link to="/MENU2">
-        MENU
+        </Link></li> */}
+        <li><Link to="/search">
+        映画を検索
         </Link></li>
         <li><Link to="/MENU3">
         MENU
@@ -20,6 +21,7 @@ function SideBar(){
         MENU
         </Link></li>
     </ul>
+
     </Nav>
     </>
     )
@@ -47,7 +49,10 @@ export const media = {
 
 
 const Nav　= styled.nav`
-    
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
     ${media.phone`
         display:none;
