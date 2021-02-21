@@ -193,6 +193,7 @@ const TopMovietitle = styled.div`
 
 const Inner = styled.div`
     max-width: 1080px;
+    width:100%;
     margin:0 auto;
 
 `;

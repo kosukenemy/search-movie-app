@@ -68,7 +68,7 @@ const Nav　= styled.nav`
             list-style:none;
             font-size:12px;
                 a {
-                    color:#333;
+                    color:#fafafa;
                     font-weight:bold;
                 }
             }

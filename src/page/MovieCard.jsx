@@ -6,33 +6,6 @@ import styled, {css} from 'styled-components'
 
 export default function MovieCard({movie}){
 
-        //states- input query, movies
-        const [query, setQuery] = useState('');
-        const [movies, setMovies] = useState([]);
-    
-        const searchMovies = async(e) => {
-            e.preventDefault();
-            const keyWords = document.getElementById('keyWords').value;
-            console.log(keyWords)
-            const query = keyWords;
-            const url = `https://api.themoviedb.org/3/search/movie?api_key=0fc8e9e04a9029823b63bf639cf9752d&language=ja&query=${query}&page=1&include_adult=false`;
-            
-            const searchResults = document.getElementById('searchResults');
-            searchResults.innerHTML = '検索キーワード：' + keyWords;
-    
-            
-            try {
-                const res = await fetch(url);
-                const data  = await res.json();
-                setMovies(data.results);
-                console.log(data);
-                
-            } catch(err) {
-                console.log(err)
-            }
-        } 
-
-
     return (
 
         <CardContainer>

@@ -18,7 +18,7 @@ function MovieDetail({match}) {
         };
         FetchAPI();
     }, [params.id]);
-
+    console.log(detail)
 
     const person = casts.map((item, index) => {
         return (
@@ -35,6 +35,7 @@ function MovieDetail({match}) {
             </Peformer>
         )
     });
+
     const els = useRef("")
     useEffect(() => {
         const { current } = els;
@@ -72,7 +73,7 @@ function MovieDetail({match}) {
             <MovieDetailContent　ref={els} className="hide">
                 <MovieDetailInfo>
                     <h3>
-                        詳細情報
+                        映画の詳細情報
                     </h3>
                     <p>
                         リリース：{detail.release_date}
@@ -86,7 +87,7 @@ function MovieDetail({match}) {
                 </MovieDetailInfo>
 
                 <YoutubeVideoContainer>
-                    <h4>トレーラー</h4>
+                    <h4>予告編 <span> {detail.title}</span> </h4>
                     <div>
                         <iframe className="iframeVideo" width="560" height="315" src={`https://www.youtube.com/embed/${detailVideo.key}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <p>
@@ -205,6 +206,17 @@ const MovieDetailInfo = styled.div`
         font-weight:bold;
         letter-spacing:0.04rem;
         margin-bottom:30px;
+        position: relative;
+        right:-1%;
+
+        &::before {
+            position: absolute;
+            content :"";
+            width:5px;
+            height:-webkit-fill-available;
+            background : #e50914;
+            left: -1%;
+        } 
     }
     p {
         color:#fff;
@@ -223,6 +235,17 @@ const YoutubeVideoContainer = styled.div`
         font-size:20px;
         font-weight:bold;
         letter-spacing:0.04rem;
+    }
+    span {
+        display:inline-block;
+        color: #a3a3a3;
+        font-size:18px;
+        font-weight:normal;
+
+        &::before {
+            content : "|";
+            
+        }
     }
     div {
         position: relative;
