@@ -274,11 +274,15 @@ const PeformerContainer = styled.div`
 const Peformer = styled.div`
     width:15%;
 
-
 `;
+
+
 
 const Card = styled.div`
     display:flex;
     overflow-x: scroll;
     gap:1rem;
+
+    /* スクロールバー */
+
 `;

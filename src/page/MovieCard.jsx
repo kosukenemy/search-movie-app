@@ -7,12 +7,14 @@ import styled, {css} from 'styled-components'
 export default function MovieCard({movie}){
 
     return (
-
+        <div>
         <CardContainer>
             <CardThumbnail>
                 <Link to={`/movie/${movie.id}`}>
                 <>
-                    <img 
+                    <img style={{
+                        width: '100%',
+                    }}
                         src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                         alt={movie.title + ' poster'}
                         />
@@ -23,18 +25,23 @@ export default function MovieCard({movie}){
                 </Link>
             </CardThumbnail>
         </CardContainer>
-
+        </div>
         
     )
 }
 
+const SearchResultBox = styled.div`
+    position:absolute;
+    z-index:10;
+`;
+
 const CardContainer = styled.div`
-      grid-row:2;
-  grid-column:2;
+
+
 `;
 
 const CardThumbnail = styled.div`
-    position:relative;
+    width:300px;
     box-shadow: 1px 2px 10px rgba(0, 0, 0, .2);
     font-size: 0;
 `;

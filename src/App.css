@@ -53,6 +53,7 @@ a { text-decoration: none !important; }
 .hide { opacity: 0; transition: all 0.5s ease-in-out;}
 
 
+/* カルーセル prev / next arrow */
 i.icon.icon-chevron-left::before {
   content: "";
   display: block;
@@ -73,3 +74,22 @@ i.icon.icon-chevron-right::before {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+/* スクロールバー全体 */
+/* ::-webkit-scrollbar {
+  display: block;
+  width: 10px;
+  opacity: 0.5;
+  } */
+  /*スクロールバーの軌道*/
+/*   ::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background:none;
+  } */
+  /*スクロールバーの動く部分*/
+/*   ::-webkit-scrollbar-thumb {
+  background: #fafafa ;
+  border-radius: 10px;
+  width: 30px;
+  opacity: 0.5;
+  } */

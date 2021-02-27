@@ -1,13 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 
 
 import { fetchMovieByGenre, fetchMovies , fetchTopratedMovie } from '../servies';
 
 import RBCarousel from "react-bootstrap-carousel";
+import SearchMovie from './SerchMovie';
 
 export default function Home(){
     const [nowPlaying, setNowPlaying] = useState([]);
@@ -58,7 +59,7 @@ export default function Home(){
                             borderRadius: '0.2rem',
                             border: 'solid 1px #444',
                         }} src={item.poster} alt={item.title}/>
-
+                        <figcaption>
                         <p className="mt-2" style={{
                             color: '#fff',
                             fontSize: '14px',
@@ -66,7 +67,7 @@ export default function Home(){
                             textAlign: 'center',
                             marginBottom : '0'
                         }}>{item.title}</p>
-
+                        </figcaption>
                     </Link>
                 </Card>
             </div>
@@ -83,7 +84,7 @@ export default function Home(){
                             borderRadius: '0.2rem',
                             border: 'solid 1px #444',
                         }} src={item.poster} alt={item.title}/>
-
+                        <figcaption>
                         <p className="mt-2" style={{
                             color: '#fff',
                             fontSize: '14px',
@@ -91,7 +92,7 @@ export default function Home(){
                             textAlign: 'center',
                             marginBottom : '0'
                         }}>{item.title}</p>
-
+                        </figcaption>
                     </Link>
                 </Card>
             </div>
@@ -139,15 +140,43 @@ export default function Home(){
                 </MovieListInner>
                 </>
             </Inner>
-
+            
+{/*             <PopUpBox>
+                <PopUpBoxInner>
+                    <>
+                       コンテナ
+                    </>
+                </PopUpBoxInner>
+            </PopUpBox> */}
         </HomeContainer>
     )
     return null
 };
 
+// メディアクエリ
+export const media = {
+    desktop: (...args) => css`
+    @media (min-width: 1300px) {
+        ${ css(...args)}
+    }
+    `,
+        mid: (...args) => css`
+        @media (min-width: 1025px) {
+            ${ css(...args)}
+        }
+        `,
+    phone: (...args) => css`
+    @media (max-width: 768px) {
+        ${ css(...args)}
+    }
+    `
+    }
+
+
 const HomeContainer = styled.div`
     width:100%;
     margin: 0 auto;
+    position:relative;
 
 `;
 
@@ -206,8 +235,34 @@ const MovieListInner = styled.ul`
     align-items: start;
     padding: 0rem 0px;
     gap: 2rem 1rem;
+    ${media.phone`
+        grid-template-columns: repeat(8, minmax(250px, 10rem));
+        overflow-x:scroll;
+    `}
 `;
 
-const Card = styled.div`
+const Card = styled.figure`
     width:100%;
+    
+
+    img {
+        width:'100%';
+        height:'23rem';
+        border-radius: '0.2rem';
+        border: 'solid 1px #444';
+    }
+`;
+
+const PopUpBox = styled.div`
+
+`;
+
+const PopUpBoxInner = styled.div`
+    width: 1000px;
+    background: rgb(255,255,255);
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
 `;

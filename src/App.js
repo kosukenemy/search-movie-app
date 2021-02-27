@@ -10,6 +10,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 
+//
+import ScrollToTop from './ScrollToTop';
+
 import SearchMovie from './page/SerchMovie';
 import MovieDetail from './page/MovieDetail';
 
@@ -22,24 +25,26 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-        <AppContainer>
-          <Header/>
-          <>
-
+        <ScrollToTop>
+          <AppContainer>
+            <Header/>
             <>
-              <MainColmun>
-              <Route exact path="/" component={Main} />
+
               <>
-              <Route path="/movie/:id" component={MovieDetail} />
+                <MainColmun>
+                <Route exact path="/" component={Main} />
+                <>
+                <Route path="/movie/:id" component={MovieDetail} />
+                </>
+                <>
+                <Route path="/search" component={SearchMovie} />
+                </>
+                </MainColmun>
               </>
-              <>
-              <Route path="/search" component={SearchMovie} />
-              </>
-              </MainColmun>
             </>
-          </>
-          <Footer />
-        </AppContainer>
+            <Footer />
+          </AppContainer>
+        </ScrollToTop>
         </Switch>
       </BrowserRouter>
 
