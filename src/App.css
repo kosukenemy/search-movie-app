@@ -52,6 +52,10 @@ a { text-decoration: none !important; }
 
 .hide { opacity: 0; transition: all 0.5s ease-in-out;}
 
+.inViseble {
+  transition: all 1s ease-in-out;
+  display: none;
+}
 
 /* カルーセル prev / next arrow */
 i.icon.icon-chevron-left::before {

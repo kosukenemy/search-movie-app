@@ -15,6 +15,7 @@ import ScrollToTop from './ScrollToTop';
 
 import SearchMovie from './page/SerchMovie';
 import MovieDetail from './page/MovieDetail';
+import Loading from './Loading';
 
 
 
@@ -26,6 +27,8 @@ function App() {
       <BrowserRouter>
         <Switch>
         <ScrollToTop>
+          {/* loading */}
+          <Loading />
           <AppContainer>
             <Header/>
             <>
@@ -44,6 +47,7 @@ function App() {
             </>
             <Footer />
           </AppContainer>
+
         </ScrollToTop>
         </Switch>
       </BrowserRouter>
