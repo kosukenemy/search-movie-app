@@ -8,12 +8,9 @@ function Header(){
         <>
         <Column>
             <Link to="/">
-            <div>
-                <img style={{
-                    width:'110px',
-                    margin:'0px 40px'
-                }} src={`${process.env.PUBLIC_URL}/logo.svg`} />
-            </div>
+            <HeaderLogo>
+                <img src={`${process.env.PUBLIC_URL}/logo.svg`} />
+            </HeaderLogo>
             </Link>
             <SideBar />
         </Column>
@@ -55,4 +52,12 @@ const Column = styled.div`
         color:#444;
         margin: 10px 20px;
     }
+`;
+
+const HeaderLogo = styled.div`
+    width:110px;
+    margin:0px 40px;
+    ${media.phone`
+        margin: 0px 40px auto 20px;
+    `}
 `;

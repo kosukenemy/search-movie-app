@@ -75,21 +75,8 @@ i.icon.icon-chevron-right::before {
   transform: rotate(45deg);
 }
 
-/* スクロールバー全体 */
-/* ::-webkit-scrollbar {
-  display: block;
-  width: 10px;
-  opacity: 0.5;
-  } */
-  /*スクロールバーの軌道*/
-/*   ::-webkit-scrollbar-track {
-  border-radius: 20px;
-  background:none;
-  } */
-  /*スクロールバーの動く部分*/
-/*   ::-webkit-scrollbar-thumb {
-  background: #fafafa ;
-  border-radius: 10px;
-  width: 30px;
-  opacity: 0.5;
-  } */
+/* カルーセルスライダーのindicatorsを768px以下で非表示 */
+
+@media (max-width:768px){
+  .carousel .carousel-indicators { display: none;}
+}

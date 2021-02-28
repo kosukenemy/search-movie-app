@@ -117,37 +117,18 @@ export default function Home(){
             </div>
 
             <Inner>
-                <h3 style={{
-                    fontSize: '26px',
-                    fontWeight: 'bold',
-                    margin:'20px auto 10px',
-                    marginTop: '80px',
-                    color:'#fff',
-                }}>Discover Movie</h3>
+                <h3 className="topicsTitile">Discover Movie</h3>
                 <MovieListInner>
                     {movieList}
                 </MovieListInner>
                 <>
-                <h3 className="mt-10" style={{
-                    fontSize: '26px',
-                    fontWeight: 'bold',
-                    margin:'20px auto 10px',
-                    marginTop: '80px',
-                    color:'#fff',
-                }}>TopRated Movie</h3>
+                <h3 className="topicsTitile">TopRated Movie</h3>
                 <MovieListInner>
                 {topMovies}
                 </MovieListInner>
                 </>
             </Inner>
             
-{/*             <PopUpBox>
-                <PopUpBoxInner>
-                    <>
-                       コンテナ
-                    </>
-                </PopUpBoxInner>
-            </PopUpBox> */}
         </HomeContainer>
     )
     return null
@@ -199,11 +180,18 @@ const CarouselPosterContents = styled.div`
     position:absolute;
     left: 30px;
     bottom: 50px;
+    ${media.phone`
+    left: 3%;
+    bottom: 5%;
+    `}
 
     h2 {
         font-weight: 500;
         letter-spacing:0.02em;
         color:#fff;
+        ${media.phone`
+            font-size:calc( 14 * (100vw / 375) );
+        `}
     }
 `;
 
@@ -216,6 +204,11 @@ const TopMovietitle = styled.div`
         color:#444;
         opacity:0.7;
         letter-spacing:0.04rem;
+        ${media.phone`
+            width:fit-content;
+            font-size: 10px;
+            margin-bottom:10px;
+        `}
     }
 `;
 
@@ -225,6 +218,18 @@ const Inner = styled.div`
     width:100%;
     margin:0 auto;
 
+    .topicsTitile {
+        font-size: 26px;
+        font-weight: bold;
+        margin:20px auto 10px;
+        margin-top: 80px;
+        color:#fff;
+        ${media.phone`
+            width:89.3%;
+            margin:50px auto 10px;
+            font-size:calc(24 * (100vw / 375));
+        `}
+    }
 `;
 
 
@@ -246,23 +251,9 @@ const Card = styled.figure`
     
 
     img {
-        width:'100%';
-        height:'23rem';
-        border-radius: '0.2rem';
-        border: 'solid 1px #444';
+        width:100%;
+        height:23rem;
+        border-radius: 0.2rem;
+        border: solid 1px #444;
     }
-`;
-
-const PopUpBox = styled.div`
-
-`;
-
-const PopUpBoxInner = styled.div`
-    width: 1000px;
-    background: rgb(255,255,255);
-    position: absolute;
-    top: 1%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
 `;

@@ -55,7 +55,7 @@ const Nav　= styled.nav`
     align-items:center;
 
     ${media.phone`
-        display:none;
+        display:block;
         `}
 
         ul {
