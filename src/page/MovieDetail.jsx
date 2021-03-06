@@ -22,6 +22,7 @@ function MovieDetail({match}) {
 
     const person = casts.map((item, index) => {
         return (
+            <>
             <Peformer key={index}>
                 <figure>
                     <img style={{width:'150px'}} src={item.img} onError={(e) => e.target.src = `${process.env.PUBLIC_URL}/asset/person_null.png`} alt={item.title}/>
@@ -33,6 +34,7 @@ function MovieDetail({match}) {
                     </figcaption>
                 </figure>
             </Peformer>
+            </>
         )
     });
 

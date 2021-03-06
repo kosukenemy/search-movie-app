@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  useRef , useEffect  } from 'react';
 import styled, { css } from 'styled-components'
 
 export default function Loading() {
 
-    const loadingElem = useRef("")
-    useEffect(() => {
-        const { current } = loadingElem;
+    const [ loading , setLoading ] = useState(false);
+    const LoadingRef = useRef();
 
-        window.onload = function () {
-            const LateDisplay = () => {
-                current.classList.add('inViseble');
-            }
-            LateDisplay();
-            /* setTimeout(LateDisplay, 3000);  */
-        }
-    });
+    useEffect(() => {
+        if ( () => setLoading(true) ) {
+            setTimeout(() => {
+                LoadingRef.current.style.display ="none"
+            }, 3000);
+        } else {}
+    },[])
+
 
     return (
         <>
-        <LoadingContainer ref={loadingElem}>
+        <LoadingContainer 
+            onLoad={ () => setLoading(true)} 
+            className={`loadingContainer ${loading && "is-loaded" }`}
+            ref={LoadingRef}
+            >
             <img src={`${process.env.PUBLIC_URL}/logo.svg`} />
         </LoadingContainer>
         </>
@@ -41,4 +44,5 @@ const LoadingContainer = styled.div`
         transform:translate(-50% , -50%);
     }
 `;
+
 

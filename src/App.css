@@ -15,47 +15,25 @@ a { text-decoration: none !important; }
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.hide { transition: all 0.5s ease-in-out; opacity: 0;}
+
+
+.is-loaded {
+  animation: fadeIn 3s ease 0s 1 normal;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.hide { opacity: 0; transition: all 0.5s ease-in-out;}
-
-.inViseble {
-  transition: all 1s ease-in-out;
-  display: none;
-}
 
 /* カルーセル prev / next arrow */
 i.icon.icon-chevron-left::before {
@@ -84,3 +62,5 @@ i.icon.icon-chevron-right::before {
 @media (max-width:768px){
   .carousel .carousel-indicators { display: none;}
 }
+
+

@@ -36,13 +36,15 @@ const SearchResultBox = styled.div`
 `;
 
 const CardContainer = styled.div`
-
+    width:860px;
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
 
 `;
 
 const CardThumbnail = styled.div`
     width:300px;
-    box-shadow: 1px 2px 10px rgba(0, 0, 0, .2);
     font-size: 0;
 `;
 
@@ -57,7 +59,7 @@ const CardTitle = styled.p`
     font-weight: 600;
     text-align:left;
     line-height: 1.8;
-    color:#fff;
+    color:#333;
     text-decoration:none;
     margin-bottom:20px;
 `;

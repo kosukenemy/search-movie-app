@@ -16,6 +16,7 @@ import ScrollToTop from './ScrollToTop';
 import SearchMovie from './page/SerchMovie';
 import MovieDetail from './page/MovieDetail';
 import Loading from './Loading';
+import ModalWindow from './page/ModalWindow';
 
 
 
