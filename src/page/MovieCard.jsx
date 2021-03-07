@@ -36,7 +36,7 @@ const SearchResultBox = styled.div`
 `;
 
 const CardContainer = styled.div`
-    width:860px;
+    width:1080px;
     margin:0 auto;
     display:flex;
     flex-wrap:wrap;
@@ -59,7 +59,7 @@ const CardTitle = styled.p`
     font-weight: 600;
     text-align:left;
     line-height: 1.8;
-    color:#333;
+    color:#fff;
     text-decoration:none;
     margin-bottom:20px;
 `;

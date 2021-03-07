@@ -18,11 +18,16 @@ a { text-decoration: none !important; }
 
 .hide { transition: all 0.5s ease-in-out; opacity: 0;}
 
+.is-none {
+  display: none !important;
+}
 
 .is-loaded {
   animation: fadeIn 3s ease 0s 1 normal;
   overflow: hidden;
+  display: none;
 }
+
 
 @keyframes fadeIn {
   0% {
@@ -33,6 +38,11 @@ a { text-decoration: none !important; }
     
   }
 }
+
+
+.is-loadedBefore { display: none;}
+
+.is-loadedAfter { display: block; } 
 
 
 /* カルーセル prev / next arrow */

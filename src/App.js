@@ -2,7 +2,7 @@
 import './App.css';
 import styled, {css} from 'styled-components'
 import { BrowserRouter, Route, Router , Switch, useParams } from "react-router-dom";
-
+import React, { useState , useRef , useEffect  } from 'react';
 
 
 // component
@@ -19,10 +19,21 @@ import Loading from './Loading';
 import ModalWindow from './page/ModalWindow';
 
 
-
-
-
 function App() {
+  const LoadingRef = useRef();
+
+  useEffect(() => {
+
+
+    setTimeout( () => {
+      console.log(LoadingRef);
+      LoadingRef.current.classList.remove('is-none')
+    },2000)
+
+  },[])
+
+
+
   return (
     <>
       <BrowserRouter>
@@ -30,7 +41,9 @@ function App() {
         <ScrollToTop>
           {/* loading */}
           <Loading />
-          <AppContainer>
+          <AppContainer 
+            className="app-container is-none"
+            ref={LoadingRef} >
             <Header/>
             <>
 
@@ -89,6 +102,7 @@ const AppContainer = styled.div`
     grid-template-rows: 60px 1fr 100px; 
     grid-template-columns: 1fr;
     min-height:100vh;
+
 `;
 
 

@@ -9,21 +9,11 @@ function SideBar(){
     <>
     <Nav>
     <ul>
-{/*         <li><Link to="/">
-        HOME
-        </Link></li> */}
-        <li><Link to="/search">
-        映画を検索
-        </Link></li>
-        <li><Link to="/MENU3">
-        MENU
-        </Link></li>
-        <li><Link>
-        MENU
-        </Link></li>
-{/*         <li>
-            <ModalWindow />
-        </li> */}
+        <li>
+        <Link to="/search">
+            Search Movie
+        </Link>
+        </li>
     </ul>
 
     </Nav>

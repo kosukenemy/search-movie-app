@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
-import {  useRef , useEffect  } from 'react';
+import React, { useState , useEffect } from 'react';
 import styled, { css } from 'styled-components'
 
 export default function Loading() {
 
-    const [ loading , setLoading ] = useState(false);
-    const LoadingRef = useRef();
+    const [isLoad, setLoadingActive] = useState("false");
 
-    useEffect(() => {
-        if ( () => setLoading(true) ) {
-            setTimeout(() => {
-                LoadingRef.current.style.display ="none"
-            }, 3000);
-        } else {}
-    },[])
+    const Loading = () => {
+        
+        setTimeout(() => {
+            setLoadingActive(!isLoad);
+        }, 2000);
+
+    };
 
 
     return (
         <>
-        <LoadingContainer 
-            onLoad={ () => setLoading(true)} 
-            className={`loadingContainer ${loading && "is-loaded" }`}
-            ref={LoadingRef}
-            >
+        <LoadingContainer className={isLoad ? "loadingView" : "is-loaded"} onLoad={Loading}>
             <img src={`${process.env.PUBLIC_URL}/logo.svg`} />
         </LoadingContainer>
         </>

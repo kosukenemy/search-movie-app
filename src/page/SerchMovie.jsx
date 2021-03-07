@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components'
 import MovieCard from './MovieCard';
+import { BrowserRouter, Route, Router , Switch, useParams ,Link } from "react-router-dom";
 
 export default function SearchMovie() {
 
@@ -33,6 +34,7 @@ export default function SearchMovie() {
 
     return (
         <>
+        <SearchMovieContainer>
             <SearchForm onSubmit={searchMovies}>
                 <label className="label" htmlFor="query">
                     <InputText className="input" id="keyWords" type="text" name="query" required="required" placeholder="" value={query} onChange={(e) => setQuery(e.target.value)}/>
@@ -45,19 +47,26 @@ export default function SearchMovie() {
                     <p id="searchResults"></p>
                 </SearchResults>
             </SearchForm>
+
             <>
                 {movies.filter(movie => movie.poster_path).map(movie => (
                     <MovieCard movie={movie} key={movie.id}/>
                 ))}
             </>
+        </SearchMovieContainer>
         </>
     )
 }
 
+const SearchMovieContainer = styled.div`
+    width:1080px;
+    margin:0 auto;
+
+`;
+
 
 const SearchForm = styled.form`
-    margin-top: 15px;
-    margin-right: 50px;
+
 `;
 
 const SearchFormTitle = styled.p`
@@ -72,8 +81,7 @@ const SearchFormTitle = styled.p`
 
 const InputText = styled.input`
     font-family: 'Roboto', sans-serif;
-    width:200px;
-    height: 30px;
+    width:600px;
     padding-left: 10px;
     border: 0.2px solid #999;
 `;

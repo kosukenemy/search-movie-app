@@ -40,12 +40,14 @@ export const media = {
 }
 
 const Column = styled.div`
+    width:100%;
+    height:60px;
     background:#000;
     grid-row: 1;
     grid-column: 1 / span 2;
-    border-bottom: #444;
     display: flex;
     align-items:center;
+    z-index:10;
     
 
 
