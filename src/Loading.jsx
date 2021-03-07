@@ -9,7 +9,7 @@ export default function Loading() {
         
         setTimeout(() => {
             setLoadingActive(!isLoad);
-        }, 2000);
+        }, 4000);
 
     };
 

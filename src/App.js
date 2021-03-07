@@ -20,17 +20,17 @@ import ModalWindow from './page/ModalWindow';
 
 
 function App() {
+  const [isload , setIsload ] = useState("")
   const LoadingRef = useRef();
 
-  useEffect(() => {
-
-
-    setTimeout( () => {
-      console.log(LoadingRef);
-      LoadingRef.current.classList.remove('is-none')
-    },2000)
-
-  },[])
+  useEffect(
+    () => {
+      setTimeout( () => {
+        LoadingRef.current.classList.remove('is-none');
+      },2000)
+    },
+    [LoadingRef]
+  );
 
 
 
@@ -43,7 +43,10 @@ function App() {
           <Loading />
           <AppContainer 
             className="app-container is-none"
-            ref={LoadingRef} >
+            ref={LoadingRef} 
+            value ={isload}
+            onLoad={ e =>(setIsload(e.target.isload))}
+            >
             <Header/>
             <>
 
