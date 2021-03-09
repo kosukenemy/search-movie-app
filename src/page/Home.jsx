@@ -8,12 +8,13 @@ import styled, { css } from 'styled-components'
 import { fetchMovieByGenre, fetchMovies , fetchTopratedMovie } from '../servies';
 
 import RBCarousel from "react-bootstrap-carousel";
-import SearchMovie from './SerchMovie';
 
-export default function Home(){
+export default function Home({src, alt}){
     const [nowPlaying, setNowPlaying] = useState([]);
-    const [movieByGenre ,setMovieByGenre ] = useState([]);
-    const [movieToprated , setMovieToprated ] = useState([]);
+    const [movieByGenre ,setMovieByGenre] = useState([]);
+    const [movieToprated , setMovieToprated] = useState([]);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [homeLoaded , setHomeLoaded] = useState(true);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -23,6 +24,19 @@ export default function Home(){
         }
         fetchApi();
     }, [])
+
+    useEffect( () => {
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                 window.location.reload();
+            }
+        };
+    })
+
+    const HomeLoader = () => {
+        setHomeLoaded(!homeLoaded);
+    }
+
     const movies = nowPlaying.slice(0.5).map((item , index) => {
         return (
             <div key={index}>
@@ -39,7 +53,9 @@ export default function Home(){
                                 </h2>
                             </TopMovietitle>
                         </CarouselPosterContents>
-                        <img src={item.backPoster} alt={item.title}/>
+                        <img src={item.backPoster} alt={item.title}
+                        onLoad={HomeLoader}
+                        />
                     </CarouselPoster>
                     </Link>
                 </Carousel>
@@ -54,11 +70,16 @@ export default function Home(){
                 
                 <Card>
                     <Link to={`/movie/${item.id}`}>
-                        <img style={{
+                        <img 
+                            onLoad={HomeLoader}
+                            style={{
                             width:'100%', height:'23rem',
                             borderRadius: '0.2rem',
                             border: 'solid 1px #444',
-                        }} src={item.poster} alt={item.title}/>
+                        }} src={item.poster} alt={item.title}
+                            className={`smooth-image image- ${imageLoaded ? 'visible' :  'hidden'}`}
+                            onLoad={()=> setImageLoaded(true)}
+                        />
                         <figcaption>
                         <p className="mt-2" style={{
                             color: '#fff',
@@ -68,6 +89,12 @@ export default function Home(){
                             marginBottom : '0'
                         }}>{item.title}</p>
                         </figcaption>
+
+                        {!imageLoaded && (
+                            <div className="smooth-preloader">
+                                <span className="loader" />
+                            </div>
+                        )}
                     </Link>
                 </Card>
             </div>
@@ -79,7 +106,9 @@ export default function Home(){
             <div key={index}>
                 <Card>
                     <Link to={`/movie/${item.id}`}>
-                        <img style={{
+                        <img 
+                            onLoad={HomeLoader}
+                            style={{
                             width:'100%', height:'23rem',
                             borderRadius: '0.2rem',
                             border: 'solid 1px #444',
@@ -101,7 +130,9 @@ export default function Home(){
 
     
     return (
-        <HomeContainer>
+        <HomeContainer
+            className={` ${homeLoaded ? 'isBackOpen' : 'isBackClose'}`}
+        >
             <div className="row">
                 <div className="col">
                 <RBCarousel

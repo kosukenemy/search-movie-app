@@ -16,22 +16,21 @@ import ScrollToTop from './ScrollToTop';
 import SearchMovie from './page/SerchMovie';
 import MovieDetail from './page/MovieDetail';
 import Loading from './Loading';
-import ModalWindow from './page/ModalWindow';
 
 
 function App() {
-  const [isload , setIsload ] = useState("")
+  const [isload , setIsload ] = useState(true)
   const LoadingRef = useRef();
 
   useEffect(
     () => {
       setTimeout( () => {
         LoadingRef.current.classList.remove('is-none');
-      },2000)
+      },1000)
     },
     [LoadingRef]
   );
-
+  const AppLoad = () => { setIsload(!isload)}
 
 
   return (
@@ -41,11 +40,12 @@ function App() {
         <ScrollToTop>
           {/* loading */}
           <Loading />
+          
           <AppContainer 
-            className="app-container is-none"
+            className={`app-container ${isload ? 'is-active' : 'is-none'}`}
             ref={LoadingRef} 
             value ={isload}
-            onLoad={ e =>(setIsload(e.target.isload))}
+            onLoad={ e =>(setIsload(e.target.isload)) && AppLoad}
             >
             <Header/>
             <>

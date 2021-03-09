@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect ,useState , useRef  } from 'react';
+import { useEffect ,useState  } from 'react';
 import { fetchCasts, fetchMovieDetail, fetchMovieVideos } from '../servies';
 import styled, {css} from 'styled-components'
 
@@ -8,7 +8,8 @@ function MovieDetail({match}) {
     const [detail, setDetail] = useState([]); 
     const [casts , setCasts] = useState([]);
     const [detailVideo, setDetailVideo] = useState([]);
-
+    const [imageLoaded, setImageLoaded]= useState(false);
+    const [ detailisLoad , setDetailIsLoad ] = useState(false);
 
     useEffect(() => {   
         const FetchAPI = async() => {
@@ -18,43 +19,56 @@ function MovieDetail({match}) {
         };
         FetchAPI();
     }, [params.id]);
-    console.log(detail)
 
     const person = casts.map((item, index) => {
         return (
             <>
             <Peformer key={index}>
                 <figure>
-                    <img style={{width:'150px'}} src={item.img} onError={(e) => e.target.src = `${process.env.PUBLIC_URL}/asset/person_null.png`} alt={item.title}/>
+                    <img style={{width:'150px'}} 
+                        src={item.img} 
+                        onError={(e) => e.target.src = `${process.env.PUBLIC_URL}/asset/person_null.png`} 
+                        className={`smooth-image image- ${
+                            imageLoaded ? 'visible' :  'hidden'
+                            }`}
+                        onLoad={()=> setImageLoaded(true)}
+                        
+                        alt={item.title}
+                        />
                     <figcaption　style={{ color:'#fff', fontSize:'14px', marginBottom:'2px', fontWeight:'bold'}}>
                         {item.name} / 
                         <span style={{display:'block', fontWeight:'normal'}}>
                             {item.character}
                         </span>
                     </figcaption>
+
+                    {!imageLoaded && (
+                        <div className="smooth-preloader">
+                            <span className="loader" />
+                        </div>
+                    )}
                 </figure>
             </Peformer>
             </>
         )
     });
 
-    const els = useRef("")
-    useEffect(() => {
-        const { current } = els;
-
-        const LateDisplay = () => {
-            current.classList.remove('hide');
-        }
-        setTimeout(LateDisplay, 1000);
-    });
+    const PageLoader = () => {
+        setDetailIsLoad(!detailisLoad); 
+    };
 
 
+    
 
     return (
-        <DetailContainer>
+
+        <div>
+        <DetailContainer
+            className={` ${detailisLoad ? 'isloadOpen' : 'isloadClose'}`}
+        >
             <KeyVisualContainer>
-                <div className="posterImage" style={{}}>
-                    <img className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
+                <div className="posterImage">
+                    <img onLoad={PageLoader} className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
                 </div>
                 <InnerContents>
                     <BlackMask />
@@ -72,7 +86,7 @@ function MovieDetail({match}) {
                 </InnerContents>
             </KeyVisualContainer>
             <>
-            <MovieDetailContent　ref={els} className="hide">
+            <MovieDetailContent>
                 <MovieDetailInfo>
                     <h3>
                         映画の詳細情報
@@ -112,6 +126,7 @@ function MovieDetail({match}) {
 
             </>
         </DetailContainer>
+        </div>
     )
 }
 
@@ -156,9 +171,9 @@ const KeyVisualContainer = styled.div`
     position:relative;
 
     .posterImage {
-        width: '100%';
-        position:'relative';
-        left:'15%';
+        width: 100%;
+        position:relative;
+        left:15%;
         ${media.phone`
             position:static;
             margin: 0 auto 30px;

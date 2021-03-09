@@ -3,14 +3,12 @@ import styled, { css } from 'styled-components'
 
 export default function Loading() {
 
-    const [isLoad, setLoadingActive] = useState("false");
+    const [isLoad, setLoadingActive] = useState(true);
 
     const Loading = () => {
-        
         setTimeout(() => {
             setLoadingActive(!isLoad);
-        }, 4000);
-
+        }, 2000);
     };
 
 

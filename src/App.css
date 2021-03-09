@@ -4,45 +4,28 @@ body {
   color: #fff;
 }
 
-a { text-decoration: none !important; }
+a { text-decoration: none !important; display: block; }
+
 
 * {
   margin: 0;
   padding: 0;
 }
 
-.App {
-  text-align: center;
-}
 
-
-.hide { transition: all 0.5s ease-in-out; opacity: 0;}
 
 .is-none {
+  transition: all .9s ease;
   display: none !important;
 }
 
 .is-loaded {
-  animation: fadeIn 3s ease 0s 1 normal;
-  overflow: hidden;
+  transition: all .3s ease;
   display: none;
 }
 
 
-@keyframes fadeIn {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    
-  }
-}
 
-
-.is-loadedBefore { display: none;}
-
-.is-loadedAfter { display: block; } 
 
 
 /* カルーセル prev / next arrow */
@@ -67,6 +50,12 @@ i.icon.icon-chevron-right::before {
   transform: rotate(45deg);
 }
 
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 0.5;
+  transition: all .4s ease-in-out;
+}
+
 /* カルーセルスライダーのindicatorsを768px以下で非表示 */
 
 @media (max-width:768px){
@@ -74,3 +63,35 @@ i.icon.icon-chevron-right::before {
 }
 
 
+
+.smooth-image {
+  transition: opacity 1s;
+}
+.image-visible {
+  opacity: 1;
+}
+.image-hidden {
+  opacity: 0;
+}
+
+
+/* Home img onLoad で発火 */
+.isBackOpen { 
+  opacity: 1;
+  transition: all 10s ease;
+}
+.isBackClose { 
+  opacity: 0;
+  transition: all 10s ease;
+}
+
+
+/* 画面遷移時にの img onLoad で発火 */
+.isloadOpen { 
+  opacity: 1;
+  transition: all .4s ease;
+}
+.isloadClose { 
+  opacity: 0;
+  transition: all .4s ease;
+}
