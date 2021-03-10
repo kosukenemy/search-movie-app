@@ -39,7 +39,7 @@ function App() {
                 <Route path="/movie/:id" component={MovieDetail} />
                 </>
                 <>
-{/*                 <Route path="/search" component={SearchMovie} /> */}
+                <Route path="/search" component={SearchMovie} />
                 </>
                 </MainColmun>
               </>
