@@ -19,18 +19,6 @@ import Loading from './Loading';
 
 
 function App() {
-  const [isload , setIsload ] = useState(true)
-  const LoadingRef = useRef();
-
-  useEffect(
-    () => {
-      setTimeout( () => {
-        LoadingRef.current.classList.remove('is-none');
-      },1000)
-    },
-    [LoadingRef]
-  );
-  const AppLoad = () => { setIsload(!isload)}
 
 
   return (
@@ -38,15 +26,9 @@ function App() {
       <BrowserRouter>
         <Switch>
         <ScrollToTop>
-          {/* loading */}
-          <Loading />
+
           
-          <AppContainer 
-            className={`app-container ${isload ? 'is-active' : 'is-none'}`}
-            ref={LoadingRef} 
-            value ={isload}
-            onLoad={ e =>(setIsload(e.target.isload)) && AppLoad}
-            >
+          <AppContainer>
             <Header/>
             <>
 
@@ -57,7 +39,7 @@ function App() {
                 <Route path="/movie/:id" component={MovieDetail} />
                 </>
                 <>
-                <Route path="/search" component={SearchMovie} />
+{/*                 <Route path="/search" component={SearchMovie} /> */}
                 </>
                 </MainColmun>
               </>

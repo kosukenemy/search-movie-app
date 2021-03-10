@@ -144,7 +144,9 @@ export const fetchMovieVideos = async (id) => {
             }
         });
         return data['results'][0];
-    } catch (error) { }
+    } catch (error) {
+        console.log('error')
+     }
 }
 
 export const fetchCasts = async (id) => {

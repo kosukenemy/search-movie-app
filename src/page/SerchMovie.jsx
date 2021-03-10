@@ -61,12 +61,13 @@ export default function SearchMovie() {
 const SearchMovieContainer = styled.div`
     width:1080px;
     margin:0 auto;
-
+    display:block;
 `;
 
 
 const SearchForm = styled.form`
-
+    text-align:center;
+    margin:50px auto 200px;
 `;
 
 const SearchFormTitle = styled.p`

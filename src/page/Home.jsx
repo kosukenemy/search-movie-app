@@ -14,7 +14,7 @@ export default function Home({src, alt}){
     const [movieByGenre ,setMovieByGenre] = useState([]);
     const [movieToprated , setMovieToprated] = useState([]);
     const [imageLoaded, setImageLoaded] = useState(false);
-    const [homeLoaded , setHomeLoaded] = useState(true);
+    const [homeLoaded , setHomeLoaded] = useState(false);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -25,16 +25,9 @@ export default function Home({src, alt}){
         fetchApi();
     }, [])
 
-    useEffect( () => {
-        window.onpageshow = function(event) {
-            if (event.persisted) {
-                 window.location.reload();
-            }
-        };
-    })
 
     const HomeLoader = () => {
-        setHomeLoaded(!homeLoaded);
+        setTimeout(() => { setHomeLoaded(!homeLoaded); },100);
     }
 
     const movies = nowPlaying.slice(0.5).map((item , index) => {
@@ -54,7 +47,7 @@ export default function Home({src, alt}){
                             </TopMovietitle>
                         </CarouselPosterContents>
                         <img src={item.backPoster} alt={item.title}
-                        onLoad={HomeLoader}
+                        onLoad={() => HomeLoader(true)}
                         />
                     </CarouselPoster>
                     </Link>
@@ -71,7 +64,6 @@ export default function Home({src, alt}){
                 <Card>
                     <Link to={`/movie/${item.id}`}>
                         <img 
-                            onLoad={HomeLoader}
                             style={{
                             width:'100%', height:'23rem',
                             borderRadius: '0.2rem',
@@ -107,7 +99,6 @@ export default function Home({src, alt}){
                 <Card>
                     <Link to={`/movie/${item.id}`}>
                         <img 
-                            onLoad={HomeLoader}
                             style={{
                             width:'100%', height:'23rem',
                             borderRadius: '0.2rem',
@@ -131,7 +122,7 @@ export default function Home({src, alt}){
     
     return (
         <HomeContainer
-            className={` ${homeLoaded ? 'isBackOpen' : 'isBackClose'}`}
+            className={` ${homeLoaded ? 'isloadOpen' : 'isloadClose'}`}
         >
             <div className="row">
                 <div className="col">

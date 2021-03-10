@@ -75,18 +75,8 @@ i.icon.icon-chevron-right::before {
 }
 
 
-/* Home img onLoad で発火 */
-.isBackOpen { 
-  opacity: 1;
-  transition: all 10s ease;
-}
-.isBackClose { 
-  opacity: 0;
-  transition: all 10s ease;
-}
 
-
-/* 画面遷移時にの img onLoad で発火 */
+/* 画面遷移時 onLoad で発火させるセレクタ */
 .isloadOpen { 
   opacity: 1;
   transition: all .4s ease;

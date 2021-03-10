@@ -58,6 +58,7 @@ function MovieDetail({match}) {
     };
 
 
+
     
 
     return (
@@ -68,7 +69,7 @@ function MovieDetail({match}) {
         >
             <KeyVisualContainer>
                 <div className="posterImage">
-                    <img onLoad={PageLoader} className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
+                    <img onLoad={() => PageLoader(true)} className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
                 </div>
                 <InnerContents>
                     <BlackMask />
@@ -105,7 +106,10 @@ function MovieDetail({match}) {
                 <YoutubeVideoContainer>
                     <h4>予告編 <span> {detail.title}</span> </h4>
                     <div>
-                        <iframe className="iframeVideo" width="560" height="315" src={`https://www.youtube.com/embed/${detailVideo.key}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe className="iframeVideo" width="560" height="315" 
+                                src={`https://www.youtube.com/embed/${detailVideo.key}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                                onError={(e) => e.target.src = `https://www.youtube.com/embed/SrzKXH9Bi8k`} 
+                        ></iframe>
                         <p>
                             {detailVideo.name}
                         </p>
