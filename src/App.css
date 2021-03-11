@@ -74,7 +74,12 @@ i.icon.icon-chevron-right::before {
   opacity: 0;
 }
 
-
+/* App 読み込みで発火させるセレクタ */
+.is-opened{
+  visibility: visible;
+  opacity: 1 !important;
+  transition: all .4s ease;
+}
 
 /* 画面遷移時 onLoad で発火させるセレクタ */
 .isloadOpen { 
@@ -86,8 +91,16 @@ i.icon.icon-chevron-right::before {
   transition: all .4s ease;
 }
 
+
 /* ドロップダウンメニュー　アクティブで発火させるセレクタ */
-.is-opened{
+.is-toggleOpen{
   visibility: visible;
-  opacity: 1 !important;
+  transition: all .8s ease;
+  display: block;
+}
+
+.is-toggleClose{
+  visibility: visible;
+  transition: all .8s ease;
+  display: none;
 }

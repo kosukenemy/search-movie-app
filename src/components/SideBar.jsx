@@ -6,6 +6,9 @@ import {  Link  } from 'react-router-dom';
 
 function SideBar(){
     const [ dropdown , setDropdown ] = useState(false);
+    const toggle = () => {
+        setDropdown(!dropdown);
+    };
 
     return (
     <>
@@ -17,7 +20,7 @@ function SideBar(){
             </Link>
         </li>
         <DropDownMenu 
-            onClick={ () => setDropdown(true) }
+            onClick={toggle}
             >
             <Link>
             Genre 
@@ -26,12 +29,9 @@ function SideBar(){
         <>
         </>
     </ul>
-    <DropDownMenuWindow className={` ${dropdown && "is-opened"}`}>
+    <DropDownMenuWindow className={` ${dropdown ? "is-toggleOpen" : "is-toggleClose"} `}>
             <a className="dropDownList" href="">メニュー</a>
             <a className="dropDownList" href="">メニュー</a>
-            <p onClick={ () => setDropdown(false) }>
-                close
-            </p>
         </DropDownMenuWindow>
     </Nav>
     </>
@@ -99,7 +99,7 @@ const DropDownMenu = styled.li`
         top: 6px;
         left: 0;
         border: 6px solid transparent;
-        border-top: 7px solid #fff;   /* 好みで色を変えてください */  
+        border-top: 7px solid #fff;   
     }
 
 `;
@@ -111,9 +111,6 @@ const DropDownMenuWindow = styled.div`
     position: absolute;
     top: 39px;
     left: 100px;
-
-    // 初期は非表示
-    opacity:0;
 
 
     > .dropDownList {

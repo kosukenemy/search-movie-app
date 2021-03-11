@@ -26,11 +26,6 @@ export default function Home({src, alt}){
         fetchApi();
     }, [])
 
-
-    const HomeLoader = () => {
-        setTimeout(() => { setHomeLoaded(!homeLoaded); },100);
-    }
-
     const movies = nowPlaying.slice(0.5).map((item , index) => {
         return (
             <div key={index}>
@@ -48,7 +43,7 @@ export default function Home({src, alt}){
                             </TopMovietitle>
                         </CarouselPosterContents>
                         <img src={item.backPoster} alt={item.title}
-                        onLoad={() => HomeLoader(true)}
+                        onLoad={() => setHomeLoaded(true)}
                         />
                     </CarouselPoster>
                     </Link>
@@ -123,7 +118,7 @@ export default function Home({src, alt}){
     
     return (
         <HomeContainer
-            className={` ${homeLoaded ? 'isloadOpen' : 'isloadClose'}`}
+            className={` ${homeLoaded && "is-opened"}`}
         >
             <div className="row">
                 <div className="col">
@@ -181,7 +176,7 @@ const HomeContainer = styled.div`
     width:100%;
     margin: 0 auto;
     position:relative;
-
+    opacity:0;
 `;
 
 const Carousel = styled.div`
