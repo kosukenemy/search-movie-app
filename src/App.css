@@ -82,14 +82,16 @@ i.icon.icon-chevron-right::before {
 }
 
 /* 画面遷移時 onLoad で発火させるセレクタ */
-.isloadOpen { 
-  opacity: 1;
-  transition: all .4s ease;
-}
 .isloadClose { 
   opacity: 0;
-  transition: all .4s ease;
+  transition: all .8s ease;
 }
+
+.isloadOpen { 
+  opacity: 1;
+  transition: all .8s ease;
+}
+
 
 
 /* ドロップダウンメニュー　アクティブで発火させるセレクタ */

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { useEffect ,useState  } from 'react';
-import { fetchCasts, fetchMovieDetail, fetchMovieVideos } from '../servies';
+import { fetchCasts, fetchMovieDetail, fetchMovieVideos , fetchSimilarMovie } from '../servies';
 import styled, {css} from 'styled-components'
 
 function MovieDetail({match}) {
@@ -8,6 +9,7 @@ function MovieDetail({match}) {
     const [detail, setDetail] = useState([]); 
     const [casts , setCasts] = useState([]);
     const [detailVideo, setDetailVideo] = useState([]);
+    const [smilarMovie , setSmilarMovie] = useState([]);
     const [imageLoaded, setImageLoaded]= useState(false);
     const [ detailisLoad , setDetailIsLoad ] = useState(false);
 
@@ -16,9 +18,11 @@ function MovieDetail({match}) {
             setDetail(await fetchMovieDetail(params.id));
             setCasts(await fetchCasts(params.id));
             setDetailVideo(await fetchMovieVideos(params.id));
+            setSmilarMovie(await fetchSimilarMovie(params.id));
         };
         FetchAPI();
     }, [params.id]);
+    console.log(smilarMovie)
 
     const person = casts.map((item, index) => {
         return (
@@ -53,23 +57,32 @@ function MovieDetail({match}) {
         )
     });
 
-    const PageLoader = () => {
-        setDetailIsLoad(!detailisLoad); 
-    };
+    const RelatedMovies = smilarMovie.map((movie , index) => {
+        return (
+            <div key={index}>
+                <h3>
+                    {movie.title}
+                </h3>
+                <div className="raletedMovieContainer">
+                    <Link to={`/movie/${movie.id}`}>
+                        <img src={movie.poster} alt={movie.title} onLoad={()=> setImageLoaded(true)}/>
+                    </Link>
+                </div>
+            </div>
+        )
+    }) 
 
 
-
-    
 
     return (
 
         <div>
         <DetailContainer
-            className={` ${detailisLoad ? 'isloadOpen' : 'isloadClose'}`}
+            className={`isloadClose ${detailisLoad && "isloadOpen"}`}
         >
             <KeyVisualContainer>
                 <div className="posterImage">
-                    <img onLoad={() => PageLoader(true)} className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
+                    <img onLoad={ () => setDetailIsLoad(true) } className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
                 </div>
                 <InnerContents>
                     <BlackMask />
@@ -125,6 +138,9 @@ function MovieDetail({match}) {
                     </Card>
                 </PeformerContainer>
 
+                <div className="RatedMovie">
+                    {RelatedMovies}
+                </div>
 
             </MovieDetailContent>
 

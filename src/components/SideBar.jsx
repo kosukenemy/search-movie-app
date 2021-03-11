@@ -29,9 +29,10 @@ function SideBar(){
         <>
         </>
     </ul>
-    <DropDownMenuWindow className={` ${dropdown ? "is-toggleOpen" : "is-toggleClose"} `}>
-            <a className="dropDownList" href="">メニュー</a>
-            <a className="dropDownList" href="">メニュー</a>
+        <DropDownMenuWindow className={` ${dropdown ? "is-toggleOpen" : "is-toggleClose"} `}>
+            <p className="dropDownTitle">ジャンルから選ぶ</p>
+            <Link to="/search" className="dropDownList" href="">Search Movie</Link>
+            <Link className="dropDownList" href="">メニュー</Link>
         </DropDownMenuWindow>
     </Nav>
     </>
@@ -112,6 +113,13 @@ const DropDownMenuWindow = styled.div`
     top: 39px;
     left: 100px;
 
+    > .dropDownTitle {
+        display:block;
+        color:#fff;
+        font-size:12px;
+        font-weight:bold;
+        border-bottom:solid 1px #fff;
+    }
 
     > .dropDownList {
         display:block;
