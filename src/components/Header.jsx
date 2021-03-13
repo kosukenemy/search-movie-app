@@ -48,7 +48,6 @@ const Column = styled.div`
     display: flex;
     align-items:center;
     z-index:10;
-    
 
 
     h1 {

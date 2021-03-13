@@ -15,7 +15,7 @@ import ScrollToTop from './ScrollToTop';
 
 import SearchMovie from './page/SerchMovie';
 import MovieDetail from './page/MovieDetail';
-import Loading from './Loading';
+import GenreMovie from './page/GenreMovie';
 
 
 function App() {
@@ -37,6 +37,9 @@ function App() {
                 <Route exact path="/" component={Main} />
                 <>
                 <Route path="/movie/:id" component={MovieDetail} />
+                </>
+                <>
+                <Route path="/movieGenre/:id" component={GenreMovie} />
                 </>
                 <>
                 <Route path="/search" component={SearchMovie} />

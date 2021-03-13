@@ -43,7 +43,7 @@ export const fetchGenre = async () => {
         const { data } = await axios.get(genreUrl, {
             params: {
                 api_key: apiKey,
-                language: 'ja',
+                language: 'en',
                 page: 1
             }
         })
@@ -190,14 +190,19 @@ export const fetchSimilarMovie = async (id) => {
     } catch (error) { }
 }
 
-export const FetchMovieReview = async(id) => {
+export const fetchMovieReview = async(id) => {
     try {
         const { data } = await axios.get(`${movieUrl}/${id}/reviews`, {
             params: {
                 api_key: apiKey,
                 language: 'ja'
             }
-        })
+        });
+        const modifiedData = data['results'].map((m) => ({
+            id: m['id'],
+        }))
+
+        return modifiedData;
 
     } catch(error){}
 }

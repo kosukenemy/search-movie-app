@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useEffect ,useState  } from 'react';
-import { fetchCasts, fetchMovieDetail, fetchMovieVideos , fetchSimilarMovie } from '../servies';
+import { fetchCasts, 
+        fetchMovieDetail, 
+        fetchMovieVideos, 
+        fetchSimilarMovie,
+        fetchGenre
+        } from '../servies';
+
 import styled, {css} from 'styled-components'
 
 function MovieDetail({match}) {
@@ -22,8 +28,11 @@ function MovieDetail({match}) {
         };
         FetchAPI();
     }, [params.id]);
-    console.log(smilarMovie)
 
+
+
+    
+    // 映画の出演者情報
     const person = casts.map((item, index) => {
         return (
             <>
@@ -57,12 +66,16 @@ function MovieDetail({match}) {
         )
     });
 
+    // 関連する映画
     const RelatedMovies = smilarMovie.slice(0,8).map((movie , index) => {
         return (
             <div key={index}>
                 <Card>
                     <Link to={`/movie/${movie.id}`}>
-                        <img src={movie.poster} alt={movie.title} onLoad={()=> setImageLoaded(true)}/>
+                        <img src={movie.poster} alt={movie.title} 
+                            onLoad={()=> setImageLoaded(true)}
+                            onClick={()=> setImageLoaded(true)}
+                            />
                         <CardCaption>
                             {movie.title}
                         </CardCaption>
@@ -70,19 +83,22 @@ function MovieDetail({match}) {
                 </Card>
             </div>
         )
-    }) 
+    }); 
 
 
 
     return (
 
         <div>
+        {/* 
+            映画詳細
+        */}
         <DetailContainer
             className={`isloadClose ${detailisLoad && "isloadOpen"}`}
         >
             <KeyVisualContainer>
                 <div className="posterImage">
-                    <img onLoad={ () => setDetailIsLoad(true) } className="img-fluid" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
+                    <img onLoad={ () => setDetailIsLoad(true) } className="" src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`} alt={detail.title}/>
                 </div>
                 <InnerContents>
                     <BlackMask />
@@ -114,6 +130,7 @@ function MovieDetail({match}) {
                     <p>
                         評価したユーザー数：{detail.vote_count}人
                     </p>
+
                 </MovieDetailInfo>
 
                 <YoutubeVideoContainer>
@@ -137,6 +154,7 @@ function MovieDetail({match}) {
                         {person}
                     </PersonCard>
                 </PeformerContainer>
+
 
                 <MovieListInner>
                     {RelatedMovies}
@@ -198,6 +216,7 @@ const KeyVisualContainer = styled.div`
             position:static;
             margin: 0 auto 30px;
         `}
+        img { width: 100%;}
     }
 
 `;
@@ -256,7 +275,7 @@ const Contents = styled.div`
     h2 {
             color:#fff;
             font-weight:bold;
-            font-size:34px;
+            font-size:32px;
             letter-spacing:0.04em;
             margin-bottom:20px;
             ${media.phone`

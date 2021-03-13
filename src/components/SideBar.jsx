@@ -13,7 +13,7 @@ function SideBar(){
     return (
     <>
     <Nav>
-    <ul>
+    <ul className="nav-list">
         <li>
             <Link to="/search">
                 Search Movie
@@ -71,12 +71,13 @@ const Nav　= styled.nav`
         display:block;
         `}
 
-        ul {
+        >.nav-list {
             width:150px;
             display:flex;
             justify-content:space-between;
             align-self: center;
             margin-bottom:0 !important;
+            position: relative;
         li {
             list-style:none;
             font-size:12px;

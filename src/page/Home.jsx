@@ -5,11 +5,10 @@ import styled, { css } from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
-
 import { fetchMovieByGenre, fetchMovies , fetchTopratedMovie } from '../servies';
 
 import RBCarousel from "react-bootstrap-carousel";
+import Genre from '../atoms/Genre';
 
 export default function Home(){
     const [nowPlaying, setNowPlaying] = useState([]);
@@ -27,6 +26,8 @@ export default function Home(){
         fetchApi();
     }, [])
 
+
+    // カルーセル
     const movies = nowPlaying.slice(0.8).map((item , index) => {
         return (
             <div key={index}>
@@ -114,8 +115,11 @@ export default function Home(){
                 </RBCarousel>
                 </div>
             </div>
-
+            
             <Inner>
+                <div>
+                    <Genre />
+                </div>
                 <h3 className="topicsTitile">Discover Movie</h3>
                 <MovieListInner>
                     {movieList}
@@ -241,7 +245,7 @@ const MovieListInner = styled.ul`
     padding: 0rem 0px;
     gap: 2rem 1rem;
     ${media.phone`
-        grid-template-columns: repeat(8, minmax(250px, 10rem));
+        grid-template-columns: repeat(20, minmax(250px, 10rem));
         overflow-x:scroll;
     `}
 `;
