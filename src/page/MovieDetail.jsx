@@ -57,17 +57,17 @@ function MovieDetail({match}) {
         )
     });
 
-    const RelatedMovies = smilarMovie.map((movie , index) => {
+    const RelatedMovies = smilarMovie.slice(0,8).map((movie , index) => {
         return (
             <div key={index}>
-                <h3>
-                    {movie.title}
-                </h3>
-                <div className="raletedMovieContainer">
+                <Card>
                     <Link to={`/movie/${movie.id}`}>
                         <img src={movie.poster} alt={movie.title} onLoad={()=> setImageLoaded(true)}/>
+                        <CardCaption>
+                            {movie.title}
+                        </CardCaption>
                     </Link>
-                </div>
+                </Card>
             </div>
         )
     }) 
@@ -93,7 +93,7 @@ function MovieDetail({match}) {
                         <OverReviewText>
                             {detail.overview}
                         </OverReviewText>
-                        <a href={detail.homepage} target="_blank" rel="noreferrer">
+                        <a href={detail.homepage} target="_blank" rel="nopener noreferrer">
                             公式サイトをみる
                         </a>
                     </Contents>
@@ -102,9 +102,9 @@ function MovieDetail({match}) {
             <>
             <MovieDetailContent>
                 <MovieDetailInfo>
-                    <h3>
+                    <SectionTitle>
                         映画の詳細情報
-                    </h3>
+                    </SectionTitle>
                     <p>
                         リリース：{detail.release_date}
                     </p>
@@ -133,14 +133,14 @@ function MovieDetail({match}) {
                     <p style={{color:'#fff', fontWeight:'bold', fontSize:'18px' ,letterSpacing:'0.04rem' }}> 
                         出演者
                     </p>
-                    <Card>
+                    <PersonCard>
                         {person}
-                    </Card>
+                    </PersonCard>
                 </PeformerContainer>
 
-                <div className="RatedMovie">
+                <MovieListInner>
                     {RelatedMovies}
-                </div>
+                </MovieListInner>
 
             </MovieDetailContent>
 
@@ -322,6 +322,35 @@ const MovieDetailInfo = styled.div`
 
 `;
 
+const SectionTitle = styled.h3`
+        
+        color:#fff;
+        font-size:24px;
+        font-weight:bold;
+        letter-spacing:0.04rem;
+        margin-bottom:30px;
+        position: relative;
+        right:-1%;
+        ${media.phone`
+            font-size:calc(20 * (100vw / 375));
+            right: -4%;
+        `}
+
+        &::before {
+            position: absolute;
+            content :"";
+            width:5px;
+            height:-webkit-fill-available;
+            background : #e50914;
+            left: -1%;
+
+            ${media.phone`
+                left: -4%;
+            `}
+        } 
+
+`;
+
 const YoutubeVideoContainer = styled.div`
     width:100%;
     margin:0 auto;
@@ -394,11 +423,44 @@ const Peformer = styled.div`
 
 
 
-const Card = styled.div`
+const PersonCard = styled.div`
     display:flex;
     overflow-x: scroll;
     gap:1rem;
     ${media.phone`
         width:100%;
     `}
+`;
+
+const MovieListInner = styled.ul`
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 10rem));
+    place-content: center space-between;
+    align-items: start;
+    padding: 0rem 0px;
+    gap: 2rem 1rem;
+    ${media.phone`
+        grid-template-columns: repeat(8, minmax(250px, 10rem));
+        overflow-x:scroll;
+    `}
+`;
+
+const Card = styled.figure`
+    width:100%;
+    
+    img {
+        width:100%;
+        height:23rem;
+        border-radius: 0.2rem;
+        border: solid 1px #444;
+    }
+
+`;
+
+const CardCaption = styled.figcaption`
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px auto 0;
 `;

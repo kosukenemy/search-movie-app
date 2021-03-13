@@ -6,11 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
+
 import { fetchMovieByGenre, fetchMovies , fetchTopratedMovie } from '../servies';
 
 import RBCarousel from "react-bootstrap-carousel";
 
-export default function Home({src, alt}){
+export default function Home(){
     const [nowPlaying, setNowPlaying] = useState([]);
     const [movieByGenre ,setMovieByGenre] = useState([]);
     const [movieToprated , setMovieToprated] = useState([]);
@@ -26,7 +27,7 @@ export default function Home({src, alt}){
         fetchApi();
     }, [])
 
-    const movies = nowPlaying.slice(0.5).map((item , index) => {
+    const movies = nowPlaying.slice(0.8).map((item , index) => {
         return (
             <div key={index}>
                 <Carousel>
@@ -53,29 +54,20 @@ export default function Home({src, alt}){
         );
     });
 
-    const movieList = movieByGenre.slice(0 ,8).map((item, index) => {
+    const movieList = movieByGenre.map((item, index) => {
         return (
             <div key={index}>
                 
                 <Card>
                     <Link to={`/movie/${item.id}`}>
-                        <img 
-                            style={{
-                            width:'100%', height:'23rem',
-                            borderRadius: '0.2rem',
-                            border: 'solid 1px #444',
-                        }} src={item.poster} alt={item.title}
+                        <img src={item.poster} alt={item.title}
                             className={`smooth-image image- ${imageLoaded ? 'visible' :  'hidden'}`}
                             onLoad={()=> setImageLoaded(true)}
                         />
                         <figcaption>
-                        <p className="mt-2" style={{
-                            color: '#fff',
-                            fontSize: '14px',
-                            fontWeight : 'bold',
-                            textAlign: 'center',
-                            marginBottom : '0'
-                        }}>{item.title}</p>
+                            <CardCaption>
+                                {item.title}
+                            </CardCaption>
                         </figcaption>
 
                         {!imageLoaded && (
@@ -89,26 +81,15 @@ export default function Home({src, alt}){
         );
     });
 
-    const topMovies = movieToprated.slice(0 ,8).map((item , index) => {
+    const topMovies = movieToprated.map((item , index) => {
         return (
             <div key={index}>
                 <Card>
                     <Link to={`/movie/${item.id}`}>
-                        <img 
-                            style={{
-                            width:'100%', height:'23rem',
-                            borderRadius: '0.2rem',
-                            border: 'solid 1px #444',
-                        }} src={item.poster} alt={item.title}/>
-                        <figcaption>
-                        <p className="mt-2" style={{
-                            color: '#fff',
-                            fontSize: '14px',
-                            fontWeight : 'bold',
-                            textAlign: 'center',
-                            marginBottom : '0'
-                        }}>{item.title}</p>
-                        </figcaption>
+                        <img src={item.poster} alt={item.title}/>
+                        <CardCaption>
+                            {item.title}
+                        </CardCaption>
                     </Link>
                 </Card>
             </div>
@@ -198,6 +179,7 @@ const CarouselPosterContents = styled.div`
     position:absolute;
     left: 30px;
     bottom: 50px;
+    z-index: 10;
     ${media.phone`
     left: 3%;
     bottom: 5%;
@@ -267,11 +249,18 @@ const MovieListInner = styled.ul`
 const Card = styled.figure`
     width:100%;
     
-
     img {
         width:100%;
         height:23rem;
         border-radius: 0.2rem;
         border: solid 1px #444;
     }
+
+`;
+const CardCaption = styled.figcaption`
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px auto 0;
 `;

@@ -1,3 +1,9 @@
+
+
+/* ----------------
+  Common
+---------------- */
+
 body {
   background-color: #191919 !important;
   font-family: 'Montserrat', sans-serif;
@@ -13,19 +19,14 @@ a { text-decoration: none !important; display: block; }
 }
 
 
+/* ----
+  img 
+------*/
 
-/* .is-none {
-  transition: all .3s ease;
-  display: none;
+img:hover {
+  transition: all 0.6s ease;
+  filter: contrast(0.7);
 }
-
-.is-loaded {
-  transition: all .3s ease;
-  display: none;
-} */
-
-
-
 
 
 /* カルーセル prev / next arrow */
@@ -84,12 +85,12 @@ i.icon.icon-chevron-right::before {
 /* 画面遷移時 onLoad で発火させるセレクタ */
 .isloadClose { 
   opacity: 0;
-  transition: all .8s ease;
+  transition: all 1s ease;
 }
 
 .isloadOpen { 
   opacity: 1;
-  transition: all .8s ease;
+  transition: all 1s ease;
 }
 
 
